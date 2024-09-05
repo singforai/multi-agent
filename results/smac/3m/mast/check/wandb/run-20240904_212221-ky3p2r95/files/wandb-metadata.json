@@ -1,0 +1,176 @@
+{
+    "os": "Linux-6.8.0-40-generic-x86_64-with-glibc2.35",
+    "python": "3.11.0",
+    "heartbeatAt": "2024-09-04T12:22:22.104314",
+    "startedAt": "2024-09-04T12:22:21.248351",
+    "docker": null,
+    "cuda": null,
+    "args": [
+        "--n_rollout_threads",
+        "32",
+        "--algorithm_name",
+        "mast",
+        "--hidden_size",
+        "128",
+        "--use_wandb",
+        "--map_name",
+        "3m"
+    ],
+    "state": "running",
+    "program": "/home/hyunwoo/\ubc14\ud0d5\ud654\uba74/multi-agent/onpolicy/train_smac.py",
+    "codePathLocal": "train_smac.py",
+    "codePath": "train_smac.py",
+    "host": "uos-desktop",
+    "username": "hyunwoo",
+    "executable": "/home/hyunwoo/miniconda3/envs/smac/bin/python",
+    "cpu_count": 12,
+    "cpu_count_logical": 24,
+    "cpu_freq": {
+        "current": 3363.5677083333335,
+        "min": 2200.0,
+        "max": 3700.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 3591.493,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 3697.306,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 2200.0,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 3771.652,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 2200.0,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 2200.0,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 3590.671,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 2200.0,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 3597.005,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 2200.0,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 2200.0,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 2200.0,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 3699.492,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 3592.43,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 3757.024,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 3748.063,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 4692.847,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 3764.918,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 3588.875,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 3655.351,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 3761.492,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 2200.0,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 3591.162,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 3583.745,
+            "min": 2200.0,
+            "max": 3700.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 233.17998886108398,
+            "used": 135.14426040649414
+        }
+    },
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "gpu_count": 2,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce RTX 3080",
+            "memory_total": 10737418240
+        },
+        {
+            "name": "NVIDIA GeForce RTX 3080",
+            "memory_total": 10737418240
+        }
+    ],
+    "memory": {
+        "total": 62.71548080444336
+    }
+}

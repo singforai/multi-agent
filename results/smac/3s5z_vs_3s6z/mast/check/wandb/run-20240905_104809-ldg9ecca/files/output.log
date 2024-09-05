@@ -1,0 +1,19 @@
+/home/hyunwoo/miniconda3/envs/smac/lib/python3.11/site-packages/s2clientprotocol/common_pb2.py:19: DeprecationWarning: Call to deprecated create function FileDescriptor(). Note: Create unlinked descriptors is going to go away. Please use get/find descriptors from generated code or query the descriptor_pool.
+  DESCRIPTOR = _descriptor.FileDescriptor(
+/home/hyunwoo/miniconda3/envs/smac/lib/python3.11/site-packages/s2clientprotocol/common_pb2.py:32: DeprecationWarning: Call to deprecated create function EnumValueDescriptor(). Note: Create unlinked descriptors is going to go away. Please use get/find descriptors from generated code or query the descriptor_pool.
+  _descriptor.EnumValueDescriptor(
+/home/hyunwoo/miniconda3/envs/smac/lib/python3.11/site-packages/s2clientprotocol/common_pb2.py:26: DeprecationWarning: Call to deprecated create function EnumDescriptor(). Note: Create unlinked descriptors is going to go away. Please use get/find descriptors from generated code or query the descriptor_pool.
+  _RACE = _descriptor.EnumDescriptor(
+/home/hyunwoo/miniconda3/envs/smac/lib/python3.11/site-packages/s2clientprotocol/common_pb2.py:76: DeprecationWarning: Call to deprecated create function FieldDescriptor(). Note: Create unlinked descriptors is going to go away. Please use get/find descriptors from generated code or query the descriptor_pool.
+  _descriptor.FieldDescriptor(
+/home/hyunwoo/miniconda3/envs/smac/lib/python3.11/site-packages/s2clientprotocol/common_pb2.py:69: DeprecationWarning: Call to deprecated create function Descriptor(). Note: Create unlinked descriptors is going to go away. Please use get/find descriptors from generated code or query the descriptor_pool.
+  _AVAILABLEABILITY = _descriptor.Descriptor(
+/home/hyunwoo/miniconda3/envs/smac/lib/python3.11/site-packages/s2clientprotocol/data_pb2.py:20: DeprecationWarning: Call to deprecated create function FileDescriptor(). Note: Create unlinked descriptors is going to go away. Please use get/find descriptors from generated code or query the descriptor_pool.
+  DESCRIPTOR = _descriptor.FileDescriptor(
+/home/hyunwoo/miniconda3/envs/smac/lib/python3.11/site-packages/s2clientprotocol/data_pb2.py:34: DeprecationWarning: Call to deprecated create function EnumValueDescriptor(). Note: Create unlinked descriptors is going to go away. Please use get/find descriptors from generated code or query the descriptor_pool.
+  _descriptor.EnumValueDescriptor(
+/home/hyunwoo/miniconda3/envs/smac/lib/python3.11/site-packages/s2clientprotocol/data_pb2.py:28: DeprecationWarning: Call to deprecated create function EnumDescriptor(). Note: Create unlinked descriptors is going to go away. Please use get/find descriptors from generated code or query the descriptor_pool.
+  _ATTRIBUTE = _descriptor.EnumDescriptor(
+/home/hyunwoo/miniconda3/envs/smac/lib/python3.11/site-packages/s2clientprotocol/data_pb2.py:168: DeprecationWarning: Call to deprecated create function FieldDescriptor(). Note: Create unlinked descriptors is going to go away. Please use get/find descriptors from generated code or query the descriptor_pool.
+  _descriptor.FieldDescriptor(
+/home/hyunwoo/miniconda3/envs/smac/lib/python3.11/site-packages/s2clientprotocol/data_pb2.py:161: DeprecationWarning: Call to deprecated create function Descriptor(). Note: Create unlinked descriptors is going to go away. Please use get/find descriptors from generated code or query the descriptor_pool.

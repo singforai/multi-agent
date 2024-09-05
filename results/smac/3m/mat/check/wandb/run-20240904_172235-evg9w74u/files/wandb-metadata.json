@@ -1,0 +1,174 @@
+{
+    "os": "Linux-6.8.0-40-generic-x86_64-with-glibc2.35",
+    "python": "3.11.0",
+    "heartbeatAt": "2024-09-04T08:22:36.403843",
+    "startedAt": "2024-09-04T08:22:35.756441",
+    "docker": null,
+    "cuda": null,
+    "args": [
+        "--n_rollout_threads",
+        "10",
+        "--algorithm_name",
+        "mat",
+        "--use_wandb",
+        "--map_name",
+        "3m"
+    ],
+    "state": "running",
+    "program": "/home/hyunwoo/\ubc14\ud0d5\ud654\uba74/multi-agent/onpolicy/train_smac.py",
+    "codePathLocal": "train_smac.py",
+    "codePath": "train_smac.py",
+    "host": "uos-desktop",
+    "username": "hyunwoo",
+    "executable": "/home/hyunwoo/miniconda3/envs/smac/bin/python",
+    "cpu_count": 12,
+    "cpu_count_logical": 24,
+    "cpu_freq": {
+        "current": 3366.2087499999993,
+        "min": 2200.0,
+        "max": 3700.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 2200.0,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 3700.0,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 2200.0,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 3700.0,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 3648.733,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 3454.564,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 3415.982,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 2200.0,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 4598.596,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 3679.037,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 2703.882,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 2872.237,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 3674.506,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 4443.364,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 4567.549,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 4046.84,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 3990.138,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 2200.0,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 2579.793,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 2200.0,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 2698.909,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 4249.062,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 3736.749,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 3673.055,
+            "min": 2200.0,
+            "max": 3700.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 233.17998886108398,
+            "used": 134.31727981567383
+        }
+    },
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "gpu_count": 2,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce RTX 3080",
+            "memory_total": 10737418240
+        },
+        {
+            "name": "NVIDIA GeForce RTX 3080",
+            "memory_total": 10737418240
+        }
+    ],
+    "memory": {
+        "total": 62.71548080444336
+    }
+}

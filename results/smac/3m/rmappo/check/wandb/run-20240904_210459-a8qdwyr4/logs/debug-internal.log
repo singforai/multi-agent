@@ -1,0 +1,954 @@
+2024-09-04 21:04:59,999 INFO    StreamThr :84883 [internal.py:wandb_internal():85] W&B internal server running at pid: 84883, started at: 2024-09-04 21:04:59.999440
+2024-09-04 21:05:00,001 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status
+2024-09-04 21:05:00,002 INFO    WriterThread:84883 [datastore.py:open_for_write():87] open: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/run-a8qdwyr4.wandb
+2024-09-04 21:05:00,002 DEBUG   SenderThread:84883 [sender.py:send():391] send: header
+2024-09-04 21:05:00,004 DEBUG   SenderThread:84883 [sender.py:send():391] send: run
+2024-09-04 21:05:00,502 INFO    SenderThread:84883 [dir_watcher.py:__init__():211] watching files in: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files
+2024-09-04 21:05:00,503 INFO    SenderThread:84883 [sender.py:_start_run_threads():1200] run started: a8qdwyr4 with start time 1725451499.998635
+2024-09-04 21:05:00,509 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: run_start
+2024-09-04 21:05:00,522 DEBUG   HandlerThread:84883 [system_info.py:__init__():26] System info init
+2024-09-04 21:05:00,522 DEBUG   HandlerThread:84883 [system_info.py:__init__():41] System info init done
+2024-09-04 21:05:00,522 INFO    HandlerThread:84883 [system_monitor.py:start():194] Starting system monitor
+2024-09-04 21:05:00,522 INFO    SystemMonitor:84883 [system_monitor.py:_start():158] Starting system asset monitoring threads
+2024-09-04 21:05:00,522 INFO    HandlerThread:84883 [system_monitor.py:probe():214] Collecting system info
+2024-09-04 21:05:00,523 INFO    SystemMonitor:84883 [interfaces.py:start():188] Started cpu monitoring
+2024-09-04 21:05:00,523 INFO    SystemMonitor:84883 [interfaces.py:start():188] Started disk monitoring
+2024-09-04 21:05:00,524 INFO    SystemMonitor:84883 [interfaces.py:start():188] Started gpu monitoring
+2024-09-04 21:05:00,524 INFO    SystemMonitor:84883 [interfaces.py:start():188] Started memory monitoring
+2024-09-04 21:05:00,524 INFO    SystemMonitor:84883 [interfaces.py:start():188] Started network monitoring
+2024-09-04 21:05:00,537 DEBUG   HandlerThread:84883 [system_info.py:probe():152] Probing system
+2024-09-04 21:05:00,538 DEBUG   HandlerThread:84883 [gitlib.py:_init_repo():56] git repository is invalid
+2024-09-04 21:05:00,539 DEBUG   HandlerThread:84883 [system_info.py:probe():200] Probing system done
+2024-09-04 21:05:00,539 DEBUG   HandlerThread:84883 [system_monitor.py:probe():223] {'os': 'Linux-6.8.0-40-generic-x86_64-with-glibc2.35', 'python': '3.11.0', 'heartbeatAt': '2024-09-04T12:05:00.537579', 'startedAt': '2024-09-04T12:04:59.935326', 'docker': None, 'cuda': None, 'args': ('--n_rollout_threads', '32', '--algorithm_name', 'rmappo', '--hidden_size', '128', '--use_wandb', '--map_name', '3m'), 'state': 'running', 'program': '/home/hyunwoo/바탕화면/multi-agent/onpolicy/train_smac.py', 'codePathLocal': 'train_smac.py', 'codePath': 'train_smac.py', 'host': 'uos-desktop', 'username': 'hyunwoo', 'executable': '/home/hyunwoo/miniconda3/envs/smac/bin/python', 'cpu_count': 12, 'cpu_count_logical': 24, 'cpu_freq': {'current': 2906.881041666667, 'min': 2200.0, 'max': 3700.0}, 'cpu_freq_per_core': [{'current': 3785.187, 'min': 2200.0, 'max': 3700.0}, {'current': 2200.0, 'min': 2200.0, 'max': 3700.0}, {'current': 2200.0, 'min': 2200.0, 'max': 3700.0}, {'current': 2200.0, 'min': 2200.0, 'max': 3700.0}, {'current': 2200.0, 'min': 2200.0, 'max': 3700.0}, {'current': 2819.116, 'min': 2200.0, 'max': 3700.0}, {'current': 2200.0, 'min': 2200.0, 'max': 3700.0}, {'current': 3591.352, 'min': 2200.0, 'max': 3700.0}, {'current': 2200.0, 'min': 2200.0, 'max': 3700.0}, {'current': 2875.335, 'min': 2200.0, 'max': 3700.0}, {'current': 2200.0, 'min': 2200.0, 'max': 3700.0}, {'current': 2321.764, 'min': 2200.0, 'max': 3700.0}, {'current': 2200.0, 'min': 2200.0, 'max': 3700.0}, {'current': 2437.17, 'min': 2200.0, 'max': 3700.0}, {'current': 3781.628, 'min': 2200.0, 'max': 3700.0}, {'current': 3784.416, 'min': 2200.0, 'max': 3700.0}, {'current': 3779.228, 'min': 2200.0, 'max': 3700.0}, {'current': 4730.71, 'min': 2200.0, 'max': 3700.0}, {'current': 2200.0, 'min': 2200.0, 'max': 3700.0}, {'current': 2200.0, 'min': 2200.0, 'max': 3700.0}, {'current': 3594.265, 'min': 2200.0, 'max': 3700.0}, {'current': 2200.0, 'min': 2200.0, 'max': 3700.0}, {'current': 3588.827, 'min': 2200.0, 'max': 3700.0}, {'current': 2566.924, 'min': 2200.0, 'max': 3700.0}], 'disk': {'/': {'total': 233.17998886108398, 'used': 134.81336975097656}}, 'gpu': 'NVIDIA GeForce RTX 3080', 'gpu_count': 2, 'gpu_devices': [{'name': 'NVIDIA GeForce RTX 3080', 'memory_total': 10737418240}, {'name': 'NVIDIA GeForce RTX 3080', 'memory_total': 10737418240}], 'memory': {'total': 62.71548080444336}}
+2024-09-04 21:05:00,539 INFO    HandlerThread:84883 [system_monitor.py:probe():224] Finished collecting system info
+2024-09-04 21:05:00,539 INFO    HandlerThread:84883 [system_monitor.py:probe():227] Publishing system info
+2024-09-04 21:05:00,539 DEBUG   HandlerThread:84883 [system_info.py:_save_conda():209] Saving list of conda packages installed into the current environment
+2024-09-04 21:05:01,503 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_created():271] file/dir created: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/conda-environment.yaml
+2024-09-04 21:05:01,554 DEBUG   HandlerThread:84883 [system_info.py:_save_conda():224] Saving conda packages done
+2024-09-04 21:05:01,555 INFO    HandlerThread:84883 [system_monitor.py:probe():229] Finished publishing system info
+2024-09-04 21:05:01,557 DEBUG   SenderThread:84883 [sender.py:send():391] send: files
+2024-09-04 21:05:01,557 INFO    SenderThread:84883 [sender.py:_save_file():1466] saving file wandb-metadata.json with policy now
+2024-09-04 21:05:01,598 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: python_packages
+2024-09-04 21:05:01,598 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:05:01,598 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: python_packages
+2024-09-04 21:05:01,599 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:05:01,599 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:05:01,831 DEBUG   SenderThread:84883 [sender.py:send():391] send: telemetry
+2024-09-04 21:05:02,281 INFO    wandb-upload_0:84883 [upload_job.py:push():130] Uploaded file /tmp/tmplodxakn_wandb/ezyz0bha-wandb-metadata.json
+2024-09-04 21:05:02,506 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/conda-environment.yaml
+2024-09-04 21:05:02,507 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_created():271] file/dir created: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/wandb-metadata.json
+2024-09-04 21:05:02,508 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_created():271] file/dir created: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/requirements.txt
+2024-09-04 21:05:02,508 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_created():271] file/dir created: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/output.log
+2024-09-04 21:05:04,507 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/output.log
+2024-09-04 21:05:05,983 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:05:11,603 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:05:11,612 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:05:16,598 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:05:16,598 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:05:16,890 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:05:21,603 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:05:22,607 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:05:22,975 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:05:22,976 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:05:22,976 DEBUG   SenderThread:84883 [sender.py:send():391] send: telemetry
+2024-09-04 21:05:22,976 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:05:22,976 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:05:22,977 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:05:22,977 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:05:22,977 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:05:22,977 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:05:22,977 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:05:25,514 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/output.log
+2024-09-04 21:05:28,038 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:05:29,999 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:05:30,516 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/output.log
+2024-09-04 21:05:31,516 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/output.log
+2024-09-04 21:05:31,599 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:05:31,600 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:05:31,603 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:05:33,852 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:05:34,517 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/config.yaml
+2024-09-04 21:05:39,607 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:05:41,604 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:05:45,608 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:05:46,599 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:05:46,599 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:05:50,864 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:05:51,616 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:05:56,609 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:06:00,525 DEBUG   SystemMonitor:84883 [system_monitor.py:_start():172] Starting system metrics aggregation loop
+2024-09-04 21:06:00,527 DEBUG   SenderThread:84883 [sender.py:send():391] send: stats
+2024-09-04 21:06:01,600 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:06:01,601 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:06:01,641 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:06:01,810 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:06:07,610 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:06:08,898 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:06:08,900 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:06:08,900 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:06:08,901 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:06:08,901 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:06:08,901 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:06:08,901 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:06:08,901 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:06:08,901 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:06:08,901 DEBUG   SenderThread:84883 [sender.py:send():391] send: history
+2024-09-04 21:06:08,902 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: summary_record
+2024-09-04 21:06:08,902 INFO    SenderThread:84883 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2024-09-04 21:06:09,530 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_created():271] file/dir created: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/wandb-summary.json
+2024-09-04 21:06:11,530 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/output.log
+2024-09-04 21:06:11,617 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:06:13,610 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:06:16,601 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:06:16,601 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:06:18,900 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:06:21,618 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:06:24,611 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:06:30,528 DEBUG   SenderThread:84883 [sender.py:send():391] send: stats
+2024-09-04 21:06:30,528 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:06:31,601 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:06:31,601 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:06:31,641 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:06:35,900 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:06:41,616 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:06:41,626 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:06:46,601 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:06:46,601 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:06:46,856 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:06:48,040 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:06:48,042 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:06:48,042 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:06:48,042 DEBUG   SenderThread:84883 [sender.py:send():391] send: history
+2024-09-04 21:06:48,042 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:06:48,044 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:06:48,045 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:06:48,043 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: summary_record
+2024-09-04 21:06:48,045 INFO    SenderThread:84883 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2024-09-04 21:06:48,045 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:06:48,046 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:06:48,046 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:06:48,540 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/wandb-summary.json
+2024-09-04 21:06:49,540 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/output.log
+2024-09-04 21:06:51,626 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:06:52,621 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:06:57,622 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:07:00,529 DEBUG   SenderThread:84883 [sender.py:send():391] send: stats
+2024-09-04 21:07:01,601 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:07:01,601 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:07:01,642 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:07:02,813 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:07:08,622 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:07:11,627 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:07:13,623 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:07:16,602 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:07:16,602 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:07:18,838 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:07:21,627 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:07:24,625 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:07:27,083 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:07:27,085 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:07:27,085 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:07:27,085 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:07:27,085 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:07:27,085 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:07:27,085 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:07:27,085 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:07:27,085 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:07:27,086 DEBUG   SenderThread:84883 [sender.py:send():391] send: history
+2024-09-04 21:07:27,087 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: summary_record
+2024-09-04 21:07:27,088 INFO    SenderThread:84883 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2024-09-04 21:07:27,551 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/wandb-summary.json
+2024-09-04 21:07:29,552 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/output.log
+2024-09-04 21:07:30,088 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:07:30,530 DEBUG   SenderThread:84883 [sender.py:send():391] send: stats
+2024-09-04 21:07:31,602 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:07:31,602 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:07:31,627 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:07:35,897 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:07:41,624 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:07:41,627 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:07:46,606 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:07:46,606 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:07:46,895 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:07:51,627 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:07:52,624 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:07:58,624 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:08:00,533 DEBUG   SenderThread:84883 [sender.py:send():391] send: stats
+2024-09-04 21:08:01,605 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:08:01,606 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:08:01,648 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:08:03,843 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:08:09,460 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:08:09,501 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:08:09,502 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:08:09,502 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:08:09,502 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:08:09,502 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:08:09,502 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:08:09,502 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:08:09,503 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:08:09,503 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:08:09,504 DEBUG   SenderThread:84883 [sender.py:send():391] send: history
+2024-09-04 21:08:09,505 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: summary_record
+2024-09-04 21:08:09,505 INFO    SenderThread:84883 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2024-09-04 21:08:09,566 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/wandb-summary.json
+2024-09-04 21:08:11,567 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/output.log
+2024-09-04 21:08:11,627 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:08:14,625 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:08:16,605 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:08:16,606 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:08:19,893 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:08:21,627 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:08:25,625 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:08:30,533 DEBUG   SenderThread:84883 [sender.py:send():391] send: stats
+2024-09-04 21:08:31,534 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:08:31,606 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:08:31,606 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:08:31,646 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:08:36,626 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:08:41,627 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:08:41,627 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:08:46,606 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:08:46,607 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:08:46,859 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:08:50,218 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:08:50,219 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:08:50,219 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:08:50,219 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:08:50,220 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:08:50,220 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:08:50,220 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:08:50,220 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:08:50,220 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:08:50,220 DEBUG   SenderThread:84883 [sender.py:send():391] send: history
+2024-09-04 21:08:50,220 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: summary_record
+2024-09-04 21:08:50,221 INFO    SenderThread:84883 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2024-09-04 21:08:50,580 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/wandb-summary.json
+2024-09-04 21:08:51,580 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/output.log
+2024-09-04 21:08:51,628 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:08:52,470 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:08:52,510 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:08:53,581 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/output.log
+2024-09-04 21:08:57,628 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:09:00,534 DEBUG   SenderThread:84883 [sender.py:send():391] send: stats
+2024-09-04 21:09:01,606 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:09:01,606 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:09:01,646 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:09:02,847 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:09:08,629 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:09:11,628 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:09:14,629 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:09:16,609 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:09:16,610 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:09:19,868 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:09:21,628 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:09:25,629 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:09:30,536 DEBUG   SenderThread:84883 [sender.py:send():391] send: stats
+2024-09-04 21:09:31,536 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:09:31,610 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:09:31,610 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:09:31,650 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:09:35,100 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:09:35,101 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:09:35,101 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:09:35,101 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:09:35,101 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:09:35,101 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:09:35,102 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:09:35,102 DEBUG   SenderThread:84883 [sender.py:send():391] send: history
+2024-09-04 21:09:35,102 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:09:35,102 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: summary_record
+2024-09-04 21:09:35,102 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:09:35,102 INFO    SenderThread:84883 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2024-09-04 21:09:35,595 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/wandb-summary.json
+2024-09-04 21:09:36,630 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:09:37,596 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/output.log
+2024-09-04 21:09:41,631 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:09:41,640 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:09:46,610 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:09:46,610 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:09:46,878 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:09:51,639 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:09:52,635 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:09:57,636 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:10:00,536 DEBUG   SenderThread:84883 [sender.py:send():391] send: stats
+2024-09-04 21:10:01,610 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:10:01,610 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:10:01,651 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:10:02,852 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:10:08,636 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:10:11,639 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:10:13,637 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:10:16,610 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:10:16,610 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:10:18,894 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:10:19,610 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:10:19,611 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:10:19,611 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:10:19,612 DEBUG   SenderThread:84883 [sender.py:send():391] send: history
+2024-09-04 21:10:19,612 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:10:19,612 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: summary_record
+2024-09-04 21:10:19,613 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:10:19,613 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:10:19,614 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:10:19,614 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:10:19,614 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:10:19,614 INFO    SenderThread:84883 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2024-09-04 21:10:20,607 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/wandb-summary.json
+2024-09-04 21:10:21,608 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/output.log
+2024-09-04 21:10:21,639 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:10:24,637 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:10:30,537 DEBUG   SenderThread:84883 [sender.py:send():391] send: stats
+2024-09-04 21:10:30,537 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:10:31,610 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:10:31,610 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:10:31,650 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:10:35,843 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:10:41,638 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:10:41,640 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:10:46,621 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:10:46,621 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:10:46,880 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:10:51,640 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:10:52,644 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:10:57,651 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:11:00,550 DEBUG   SenderThread:84883 [sender.py:send():391] send: stats
+2024-09-04 21:11:01,615 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:11:01,615 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:11:01,656 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:11:02,893 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:11:06,482 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:11:06,483 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:11:06,483 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:11:06,483 DEBUG   SenderThread:84883 [sender.py:send():391] send: history
+2024-09-04 21:11:06,483 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:11:06,483 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: summary_record
+2024-09-04 21:11:06,483 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:11:06,484 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:11:06,484 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:11:06,484 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:11:06,484 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:11:06,484 INFO    SenderThread:84883 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2024-09-04 21:11:06,625 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/wandb-summary.json
+2024-09-04 21:11:07,625 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/output.log
+2024-09-04 21:11:08,652 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:11:11,640 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:11:14,651 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:11:16,615 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:11:16,615 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:11:19,862 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:11:21,642 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:11:25,652 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:11:30,540 DEBUG   SenderThread:84883 [sender.py:send():391] send: stats
+2024-09-04 21:11:31,540 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:11:31,615 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:11:31,615 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:11:31,656 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:11:36,654 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:11:41,641 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:11:42,652 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:11:46,615 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:11:46,615 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:11:48,581 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:11:51,659 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:11:53,342 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:11:53,342 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:11:53,343 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:11:53,343 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:11:53,343 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:11:53,343 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:11:53,343 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:11:53,343 DEBUG   SenderThread:84883 [sender.py:send():391] send: history
+2024-09-04 21:11:53,343 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:11:53,343 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: summary_record
+2024-09-04 21:11:53,344 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:11:53,344 INFO    SenderThread:84883 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2024-09-04 21:11:53,638 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/wandb-summary.json
+2024-09-04 21:11:54,345 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:11:55,639 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/output.log
+2024-09-04 21:11:59,658 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:12:00,541 DEBUG   SenderThread:84883 [sender.py:send():391] send: stats
+2024-09-04 21:12:01,616 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:12:01,616 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:12:01,656 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:12:04,831 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:12:10,658 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:12:11,646 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:12:16,615 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:12:16,616 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:12:16,860 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:12:21,647 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:12:22,660 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:12:27,662 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:12:30,542 DEBUG   SenderThread:84883 [sender.py:send():391] send: stats
+2024-09-04 21:12:31,616 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:12:31,616 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:12:31,656 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:12:32,819 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:12:37,554 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:12:37,555 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:12:37,556 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:12:37,556 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:12:37,556 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:12:37,556 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:12:37,556 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:12:37,556 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:12:37,556 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:12:37,556 DEBUG   SenderThread:84883 [sender.py:send():391] send: history
+2024-09-04 21:12:37,556 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: summary_record
+2024-09-04 21:12:37,557 INFO    SenderThread:84883 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2024-09-04 21:12:37,651 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/wandb-summary.json
+2024-09-04 21:12:38,557 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:12:39,651 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/output.log
+2024-09-04 21:12:39,685 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:12:41,647 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:12:41,652 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/output.log
+2024-09-04 21:12:43,661 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:12:46,616 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:12:46,616 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:12:48,909 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:12:51,647 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:12:54,662 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:13:00,545 DEBUG   SenderThread:84883 [sender.py:send():391] send: stats
+2024-09-04 21:13:00,545 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:13:01,616 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:13:01,616 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:13:01,656 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:13:05,912 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:13:11,647 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:13:11,663 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:13:16,617 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:13:16,617 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:13:16,863 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:13:20,300 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:13:20,301 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:13:20,301 DEBUG   SenderThread:84883 [sender.py:send():391] send: history
+2024-09-04 21:13:20,301 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:13:20,302 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: summary_record
+2024-09-04 21:13:20,302 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:13:20,302 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:13:20,302 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:13:20,302 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:13:20,302 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:13:20,302 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:13:20,302 INFO    SenderThread:84883 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2024-09-04 21:13:20,666 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/wandb-summary.json
+2024-09-04 21:13:21,648 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:13:21,665 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/output.log
+2024-09-04 21:13:22,664 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:13:27,665 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:13:30,545 DEBUG   SenderThread:84883 [sender.py:send():391] send: stats
+2024-09-04 21:13:31,617 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:13:31,618 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:13:31,658 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:13:32,900 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:13:38,665 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:13:41,648 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:13:43,666 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:13:46,617 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:13:46,617 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:13:48,891 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:13:51,657 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:13:54,665 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:13:59,666 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:14:00,380 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:14:00,380 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:14:00,381 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:14:00,381 DEBUG   SenderThread:84883 [sender.py:send():391] send: history
+2024-09-04 21:14:00,381 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:14:00,382 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: summary_record
+2024-09-04 21:14:00,382 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:14:00,382 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:14:00,382 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:14:00,382 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:14:00,382 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:14:00,382 INFO    SenderThread:84883 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2024-09-04 21:14:00,546 DEBUG   SenderThread:84883 [sender.py:send():391] send: stats
+2024-09-04 21:14:00,675 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/wandb-summary.json
+2024-09-04 21:14:01,617 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:14:01,617 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:14:01,654 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:14:01,675 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/output.log
+2024-09-04 21:14:05,210 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:14:10,666 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:14:11,654 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:14:15,667 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:14:16,618 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:14:16,618 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:14:20,836 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:14:21,655 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:14:26,667 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:14:30,547 DEBUG   SenderThread:84883 [sender.py:send():391] send: stats
+2024-09-04 21:14:31,618 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:14:31,618 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:14:31,658 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:14:35,686 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:14:40,556 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:14:40,558 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:14:40,558 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:14:40,558 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:14:40,558 DEBUG   SenderThread:84883 [sender.py:send():391] send: history
+2024-09-04 21:14:40,558 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:14:40,558 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: summary_record
+2024-09-04 21:14:40,558 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:14:40,558 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:14:40,558 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:14:40,559 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:14:40,559 INFO    SenderThread:84883 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2024-09-04 21:14:40,689 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/wandb-summary.json
+2024-09-04 21:14:41,560 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:14:41,654 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:14:41,689 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/output.log
+2024-09-04 21:14:46,617 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:14:46,618 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:14:46,838 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:14:51,655 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:14:52,668 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:14:58,668 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:15:00,549 DEBUG   SenderThread:84883 [sender.py:send():391] send: stats
+2024-09-04 21:15:01,618 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:15:01,618 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:15:01,660 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:15:03,826 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:15:09,668 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:15:11,656 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:15:15,669 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:15:16,617 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:15:16,618 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:15:20,844 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:15:21,656 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:15:24,001 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:15:24,002 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:15:24,003 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:15:24,003 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:15:24,003 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:15:24,003 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:15:24,003 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:15:24,003 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:15:24,003 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:15:24,003 DEBUG   SenderThread:84883 [sender.py:send():391] send: history
+2024-09-04 21:15:24,003 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: summary_record
+2024-09-04 21:15:24,003 INFO    SenderThread:84883 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2024-09-04 21:15:24,701 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/wandb-summary.json
+2024-09-04 21:15:25,701 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/output.log
+2024-09-04 21:15:26,004 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:15:30,550 DEBUG   SenderThread:84883 [sender.py:send():391] send: stats
+2024-09-04 21:15:31,550 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:15:31,639 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:15:31,639 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:15:31,679 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:15:36,670 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:15:41,656 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:15:42,670 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:15:46,624 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:15:46,625 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:15:47,889 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:15:51,658 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:15:53,675 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:15:59,674 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:16:00,551 DEBUG   SenderThread:84883 [sender.py:send():391] send: stats
+2024-09-04 21:16:01,624 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:16:01,624 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:16:01,665 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:16:04,887 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:16:07,511 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:16:07,513 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:16:07,513 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:16:07,513 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:16:07,513 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:16:07,513 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:16:07,513 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:16:07,513 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:16:07,513 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:16:07,513 DEBUG   SenderThread:84883 [sender.py:send():391] send: history
+2024-09-04 21:16:07,514 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: summary_record
+2024-09-04 21:16:07,514 INFO    SenderThread:84883 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2024-09-04 21:16:07,712 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/wandb-summary.json
+2024-09-04 21:16:09,514 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:16:09,712 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/output.log
+2024-09-04 21:16:10,515 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:16:11,658 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:16:11,713 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/output.log
+2024-09-04 21:16:15,674 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:16:16,624 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:16:16,624 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:16:20,903 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:16:21,658 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:16:26,675 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:16:30,554 DEBUG   SenderThread:84883 [sender.py:send():391] send: stats
+2024-09-04 21:16:31,635 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:16:31,635 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:16:31,676 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:16:31,930 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:16:37,675 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:16:41,664 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:16:42,675 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:16:46,630 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:16:46,631 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:16:47,902 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:16:49,828 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:16:49,829 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:16:49,829 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:16:49,830 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:16:49,830 DEBUG   SenderThread:84883 [sender.py:send():391] send: history
+2024-09-04 21:16:49,830 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:16:49,831 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: summary_record
+2024-09-04 21:16:49,832 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:16:49,833 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:16:49,833 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:16:49,833 INFO    SenderThread:84883 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2024-09-04 21:16:49,833 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:16:50,723 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/wandb-summary.json
+2024-09-04 21:16:51,663 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:16:51,724 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/output.log
+2024-09-04 21:16:53,676 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:16:59,675 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:17:00,553 DEBUG   SenderThread:84883 [sender.py:send():391] send: stats
+2024-09-04 21:17:01,630 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:17:01,630 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:17:01,671 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:17:04,916 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:17:10,677 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:17:11,665 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:17:16,630 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:17:16,630 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:17:16,929 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:17:21,665 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:17:22,676 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:17:27,677 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:17:30,005 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:17:30,006 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:17:30,006 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:17:30,006 DEBUG   SenderThread:84883 [sender.py:send():391] send: history
+2024-09-04 21:17:30,006 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:17:30,006 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: summary_record
+2024-09-04 21:17:30,007 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:17:30,007 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:17:30,007 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:17:30,007 INFO    SenderThread:84883 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2024-09-04 21:17:30,007 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:17:30,008 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:17:30,554 DEBUG   SenderThread:84883 [sender.py:send():391] send: stats
+2024-09-04 21:17:30,735 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/wandb-summary.json
+2024-09-04 21:17:31,631 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:17:31,631 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:17:31,665 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:17:31,735 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/output.log
+2024-09-04 21:17:32,858 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:17:38,697 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:17:41,665 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:17:44,685 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:17:46,630 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:17:46,631 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:17:49,850 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:17:51,665 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:17:55,685 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:18:00,567 DEBUG   SenderThread:84883 [sender.py:send():391] send: stats
+2024-09-04 21:18:01,568 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:18:01,631 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:18:01,631 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:18:01,671 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:18:06,685 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:18:10,025 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:18:10,027 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:18:10,027 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:18:10,027 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:18:10,027 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:18:10,027 DEBUG   SenderThread:84883 [sender.py:send():391] send: history
+2024-09-04 21:18:10,028 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:18:10,028 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:18:10,029 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:18:10,029 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:18:10,028 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: summary_record
+2024-09-04 21:18:10,029 INFO    SenderThread:84883 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2024-09-04 21:18:10,747 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/wandb-summary.json
+2024-09-04 21:18:11,665 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:18:11,685 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:18:11,747 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/output.log
+2024-09-04 21:18:16,646 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:18:16,647 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:18:16,899 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:18:21,667 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:18:22,685 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:18:27,686 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:18:30,557 DEBUG   SenderThread:84883 [sender.py:send():391] send: stats
+2024-09-04 21:18:31,636 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:18:31,637 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:18:31,677 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:18:32,898 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:18:38,686 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:18:41,667 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:18:44,686 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:18:46,636 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:18:46,637 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:18:49,768 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:18:49,769 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:18:49,770 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:18:49,770 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:18:49,770 DEBUG   SenderThread:84883 [sender.py:send():391] send: history
+2024-09-04 21:18:49,770 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:18:49,771 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: summary_record
+2024-09-04 21:18:49,772 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:18:49,772 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:18:49,772 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:18:49,772 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:18:49,772 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:18:49,772 INFO    SenderThread:84883 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2024-09-04 21:18:50,759 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/wandb-summary.json
+2024-09-04 21:18:51,668 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:18:51,759 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/output.log
+2024-09-04 21:18:55,686 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:19:00,558 DEBUG   SenderThread:84883 [sender.py:send():391] send: stats
+2024-09-04 21:19:01,559 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:19:01,637 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:19:01,637 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:19:01,677 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:19:06,693 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:19:11,668 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:19:12,692 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:19:16,637 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:19:16,638 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:19:17,845 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:19:21,668 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:19:23,693 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:19:28,693 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:19:29,851 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:19:29,852 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:19:29,852 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:19:29,852 DEBUG   SenderThread:84883 [sender.py:send():391] send: history
+2024-09-04 21:19:29,852 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:19:29,852 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: summary_record
+2024-09-04 21:19:29,852 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:19:29,854 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:19:29,854 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:19:29,854 INFO    SenderThread:84883 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2024-09-04 21:19:29,854 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:19:29,854 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:19:30,559 DEBUG   SenderThread:84883 [sender.py:send():391] send: stats
+2024-09-04 21:19:30,773 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/wandb-summary.json
+2024-09-04 21:19:31,637 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:19:31,638 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:19:31,649 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:19:31,668 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:19:31,773 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/output.log
+2024-09-04 21:19:33,774 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/output.log
+2024-09-04 21:19:33,929 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:19:39,693 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:19:41,668 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:19:44,694 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:19:46,638 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:19:46,638 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:19:49,907 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:19:51,668 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:19:55,694 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:20:00,560 DEBUG   SenderThread:84883 [sender.py:send():391] send: stats
+2024-09-04 21:20:01,561 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:20:01,637 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:20:01,638 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:20:01,678 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:20:06,699 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:20:11,668 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:20:11,700 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:20:11,914 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:20:11,915 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:20:11,915 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:20:11,915 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:20:11,915 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:20:11,915 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:20:11,915 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:20:11,915 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:20:11,915 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:20:11,916 DEBUG   SenderThread:84883 [sender.py:send():391] send: history
+2024-09-04 21:20:11,916 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: summary_record
+2024-09-04 21:20:11,916 INFO    SenderThread:84883 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2024-09-04 21:20:12,786 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/wandb-summary.json
+2024-09-04 21:20:13,786 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/output.log
+2024-09-04 21:20:16,638 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:20:16,638 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:20:16,880 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:20:21,669 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:20:22,700 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:20:28,700 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:20:30,561 DEBUG   SenderThread:84883 [sender.py:send():391] send: stats
+2024-09-04 21:20:31,638 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:20:31,639 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:20:31,679 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:20:33,930 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:20:39,701 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:20:41,670 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:20:44,701 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:20:46,638 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:20:46,638 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:20:49,937 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:20:51,671 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:20:51,989 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:20:51,990 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:20:51,991 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:20:51,991 DEBUG   SenderThread:84883 [sender.py:send():391] send: history
+2024-09-04 21:20:51,991 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:20:51,991 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: summary_record
+2024-09-04 21:20:51,991 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:20:51,991 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:20:51,991 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:20:51,991 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:20:51,991 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: partial_history
+2024-09-04 21:20:51,991 INFO    SenderThread:84883 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2024-09-04 21:20:52,799 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/wandb-summary.json
+2024-09-04 21:20:53,799 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/output.log
+2024-09-04 21:20:54,992 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:21:00,562 DEBUG   SenderThread:84883 [sender.py:send():391] send: stats
+2024-09-04 21:21:00,563 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:21:01,638 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:21:01,638 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:21:01,679 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:21:05,900 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:21:11,671 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:21:11,712 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:21:16,638 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: stop_status
+2024-09-04 21:21:16,638 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: stop_status
+2024-09-04 21:21:16,861 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:21:21,672 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:21:22,712 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:21:27,713 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:21:30,159 DEBUG   SenderThread:84883 [sender.py:send():391] send: exit
+2024-09-04 21:21:30,159 INFO    SenderThread:84883 [sender.py:send_exit():598] handling exit code: 255
+2024-09-04 21:21:30,160 INFO    SenderThread:84883 [sender.py:send_exit():600] handling runtime: 989
+2024-09-04 21:21:30,160 INFO    SenderThread:84883 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2024-09-04 21:21:30,160 INFO    SenderThread:84883 [sender.py:send_exit():606] send defer
+2024-09-04 21:21:30,161 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: defer
+2024-09-04 21:21:30,161 INFO    HandlerThread:84883 [handler.py:handle_request_defer():184] handle defer: 0
+2024-09-04 21:21:30,161 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: defer
+2024-09-04 21:21:30,161 INFO    SenderThread:84883 [sender.py:send_request_defer():622] handle sender defer: 0
+2024-09-04 21:21:30,161 INFO    SenderThread:84883 [sender.py:transition_state():626] send defer: 1
+2024-09-04 21:21:30,161 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: defer
+2024-09-04 21:21:30,161 INFO    HandlerThread:84883 [handler.py:handle_request_defer():184] handle defer: 1
+2024-09-04 21:21:30,161 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: defer
+2024-09-04 21:21:30,161 INFO    SenderThread:84883 [sender.py:send_request_defer():622] handle sender defer: 1
+2024-09-04 21:21:30,161 INFO    SenderThread:84883 [sender.py:transition_state():626] send defer: 2
+2024-09-04 21:21:30,161 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: defer
+2024-09-04 21:21:30,161 INFO    HandlerThread:84883 [handler.py:handle_request_defer():184] handle defer: 2
+2024-09-04 21:21:30,161 INFO    HandlerThread:84883 [system_monitor.py:finish():203] Stopping system monitor
+2024-09-04 21:21:30,162 DEBUG   SystemMonitor:84883 [system_monitor.py:_start():179] Finished system metrics aggregation loop
+2024-09-04 21:21:30,162 INFO    HandlerThread:84883 [interfaces.py:finish():200] Joined cpu monitor
+2024-09-04 21:21:30,162 DEBUG   SystemMonitor:84883 [system_monitor.py:_start():183] Publishing last batch of metrics
+2024-09-04 21:21:30,162 INFO    HandlerThread:84883 [interfaces.py:finish():200] Joined disk monitor
+2024-09-04 21:21:30,273 INFO    HandlerThread:84883 [interfaces.py:finish():200] Joined gpu monitor
+2024-09-04 21:21:30,273 INFO    HandlerThread:84883 [interfaces.py:finish():200] Joined memory monitor
+2024-09-04 21:21:30,273 INFO    HandlerThread:84883 [interfaces.py:finish():200] Joined network monitor
+2024-09-04 21:21:30,274 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: defer
+2024-09-04 21:21:30,274 INFO    SenderThread:84883 [sender.py:send_request_defer():622] handle sender defer: 2
+2024-09-04 21:21:30,274 INFO    SenderThread:84883 [sender.py:transition_state():626] send defer: 3
+2024-09-04 21:21:30,274 DEBUG   SenderThread:84883 [sender.py:send():391] send: stats
+2024-09-04 21:21:30,274 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: defer
+2024-09-04 21:21:30,274 INFO    HandlerThread:84883 [handler.py:handle_request_defer():184] handle defer: 3
+2024-09-04 21:21:30,275 DEBUG   SenderThread:84883 [sender.py:send():391] send: history
+2024-09-04 21:21:30,275 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: summary_record
+2024-09-04 21:21:30,275 INFO    SenderThread:84883 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2024-09-04 21:21:30,276 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: defer
+2024-09-04 21:21:30,276 INFO    SenderThread:84883 [sender.py:send_request_defer():622] handle sender defer: 3
+2024-09-04 21:21:30,276 INFO    SenderThread:84883 [sender.py:transition_state():626] send defer: 4
+2024-09-04 21:21:30,276 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: defer
+2024-09-04 21:21:30,276 INFO    HandlerThread:84883 [handler.py:handle_request_defer():184] handle defer: 4
+2024-09-04 21:21:30,276 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: defer
+2024-09-04 21:21:30,276 INFO    SenderThread:84883 [sender.py:send_request_defer():622] handle sender defer: 4
+2024-09-04 21:21:30,276 INFO    SenderThread:84883 [sender.py:transition_state():626] send defer: 5
+2024-09-04 21:21:30,276 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: defer
+2024-09-04 21:21:30,276 INFO    HandlerThread:84883 [handler.py:handle_request_defer():184] handle defer: 5
+2024-09-04 21:21:30,276 DEBUG   SenderThread:84883 [sender.py:send():391] send: summary
+2024-09-04 21:21:30,278 INFO    SenderThread:84883 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2024-09-04 21:21:30,278 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: defer
+2024-09-04 21:21:30,278 INFO    SenderThread:84883 [sender.py:send_request_defer():622] handle sender defer: 5
+2024-09-04 21:21:30,278 INFO    SenderThread:84883 [sender.py:transition_state():626] send defer: 6
+2024-09-04 21:21:30,279 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: defer
+2024-09-04 21:21:30,279 INFO    HandlerThread:84883 [handler.py:handle_request_defer():184] handle defer: 6
+2024-09-04 21:21:30,279 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: defer
+2024-09-04 21:21:30,279 INFO    SenderThread:84883 [sender.py:send_request_defer():622] handle sender defer: 6
+2024-09-04 21:21:30,279 INFO    SenderThread:84883 [sender.py:transition_state():626] send defer: 7
+2024-09-04 21:21:30,279 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: status_report
+2024-09-04 21:21:30,279 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: defer
+2024-09-04 21:21:30,279 INFO    HandlerThread:84883 [handler.py:handle_request_defer():184] handle defer: 7
+2024-09-04 21:21:30,279 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: defer
+2024-09-04 21:21:30,279 INFO    SenderThread:84883 [sender.py:send_request_defer():622] handle sender defer: 7
+2024-09-04 21:21:30,810 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/wandb-summary.json
+2024-09-04 21:21:31,160 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: poll_exit
+2024-09-04 21:21:32,811 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/output.log
+2024-09-04 21:21:33,054 INFO    SenderThread:84883 [sender.py:transition_state():626] send defer: 8
+2024-09-04 21:21:33,054 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: poll_exit
+2024-09-04 21:21:33,054 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: defer
+2024-09-04 21:21:33,054 INFO    HandlerThread:84883 [handler.py:handle_request_defer():184] handle defer: 8
+2024-09-04 21:21:33,054 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: defer
+2024-09-04 21:21:33,054 INFO    SenderThread:84883 [sender.py:send_request_defer():622] handle sender defer: 8
+2024-09-04 21:21:33,054 INFO    SenderThread:84883 [job_builder.py:build():443] Attempting to build job artifact
+2024-09-04 21:21:33,055 INFO    SenderThread:84883 [job_builder.py:_get_source_type():583] no source found
+2024-09-04 21:21:33,055 INFO    SenderThread:84883 [sender.py:transition_state():626] send defer: 9
+2024-09-04 21:21:33,055 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: defer
+2024-09-04 21:21:33,055 INFO    HandlerThread:84883 [handler.py:handle_request_defer():184] handle defer: 9
+2024-09-04 21:21:33,055 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: defer
+2024-09-04 21:21:33,055 INFO    SenderThread:84883 [sender.py:send_request_defer():622] handle sender defer: 9
+2024-09-04 21:21:33,055 INFO    SenderThread:84883 [dir_watcher.py:finish():358] shutting down directory watcher
+2024-09-04 21:21:33,160 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: poll_exit
+2024-09-04 21:21:33,811 INFO    Thread-12 :84883 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/output.log
+2024-09-04 21:21:33,812 INFO    SenderThread:84883 [dir_watcher.py:finish():388] scan: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files
+2024-09-04 21:21:33,812 INFO    SenderThread:84883 [dir_watcher.py:finish():402] scan save: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/conda-environment.yaml conda-environment.yaml
+2024-09-04 21:21:33,812 INFO    SenderThread:84883 [dir_watcher.py:finish():402] scan save: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/requirements.txt requirements.txt
+2024-09-04 21:21:33,812 INFO    SenderThread:84883 [dir_watcher.py:finish():402] scan save: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/config.yaml config.yaml
+2024-09-04 21:21:33,812 INFO    SenderThread:84883 [dir_watcher.py:finish():402] scan save: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/wandb-metadata.json wandb-metadata.json
+2024-09-04 21:21:33,812 INFO    SenderThread:84883 [dir_watcher.py:finish():402] scan save: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/output.log output.log
+2024-09-04 21:21:33,813 INFO    SenderThread:84883 [dir_watcher.py:finish():402] scan save: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/wandb-summary.json wandb-summary.json
+2024-09-04 21:21:33,815 INFO    SenderThread:84883 [sender.py:transition_state():626] send defer: 10
+2024-09-04 21:21:33,818 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: poll_exit
+2024-09-04 21:21:33,819 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: defer
+2024-09-04 21:21:33,820 INFO    HandlerThread:84883 [handler.py:handle_request_defer():184] handle defer: 10
+2024-09-04 21:21:33,820 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: defer
+2024-09-04 21:21:33,820 INFO    SenderThread:84883 [sender.py:send_request_defer():622] handle sender defer: 10
+2024-09-04 21:21:33,820 INFO    SenderThread:84883 [file_pusher.py:finish():169] shutting down file pusher
+2024-09-04 21:21:34,161 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: poll_exit
+2024-09-04 21:21:34,161 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: poll_exit
+2024-09-04 21:21:34,427 INFO    wandb-upload_1:84883 [upload_job.py:push():130] Uploaded file /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/conda-environment.yaml
+2024-09-04 21:21:34,432 INFO    wandb-upload_4:84883 [upload_job.py:push():130] Uploaded file /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/wandb-summary.json
+2024-09-04 21:21:34,450 INFO    wandb-upload_3:84883 [upload_job.py:push():130] Uploaded file /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/output.log
+2024-09-04 21:21:34,452 INFO    wandb-upload_2:84883 [upload_job.py:push():130] Uploaded file /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/config.yaml
+2024-09-04 21:21:34,491 INFO    wandb-upload_0:84883 [upload_job.py:push():130] Uploaded file /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/files/requirements.txt
+2024-09-04 21:21:34,692 INFO    Thread-11 (_thread_body):84883 [sender.py:transition_state():626] send defer: 11
+2024-09-04 21:21:34,692 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: defer
+2024-09-04 21:21:34,692 INFO    HandlerThread:84883 [handler.py:handle_request_defer():184] handle defer: 11
+2024-09-04 21:21:34,692 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: defer
+2024-09-04 21:21:34,692 INFO    SenderThread:84883 [sender.py:send_request_defer():622] handle sender defer: 11
+2024-09-04 21:21:34,692 INFO    SenderThread:84883 [file_pusher.py:join():175] waiting for file pusher
+2024-09-04 21:21:34,693 INFO    SenderThread:84883 [sender.py:transition_state():626] send defer: 12
+2024-09-04 21:21:34,693 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: defer
+2024-09-04 21:21:34,693 INFO    HandlerThread:84883 [handler.py:handle_request_defer():184] handle defer: 12
+2024-09-04 21:21:34,693 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: defer
+2024-09-04 21:21:34,693 INFO    SenderThread:84883 [sender.py:send_request_defer():622] handle sender defer: 12
+2024-09-04 21:21:34,693 INFO    SenderThread:84883 [file_stream.py:finish():601] file stream finish called
+2024-09-04 21:21:34,917 INFO    SenderThread:84883 [file_stream.py:finish():605] file stream finish is done
+2024-09-04 21:21:34,917 INFO    SenderThread:84883 [sender.py:transition_state():626] send defer: 13
+2024-09-04 21:21:34,917 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: defer
+2024-09-04 21:21:34,917 INFO    HandlerThread:84883 [handler.py:handle_request_defer():184] handle defer: 13
+2024-09-04 21:21:34,918 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: defer
+2024-09-04 21:21:34,918 INFO    SenderThread:84883 [sender.py:send_request_defer():622] handle sender defer: 13
+2024-09-04 21:21:34,918 INFO    SenderThread:84883 [sender.py:transition_state():626] send defer: 14
+2024-09-04 21:21:34,918 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: defer
+2024-09-04 21:21:34,918 INFO    HandlerThread:84883 [handler.py:handle_request_defer():184] handle defer: 14
+2024-09-04 21:21:34,918 DEBUG   SenderThread:84883 [sender.py:send():391] send: final
+2024-09-04 21:21:34,918 DEBUG   SenderThread:84883 [sender.py:send():391] send: footer
+2024-09-04 21:21:34,919 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: defer
+2024-09-04 21:21:34,919 INFO    SenderThread:84883 [sender.py:send_request_defer():622] handle sender defer: 14
+2024-09-04 21:21:34,919 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: poll_exit
+2024-09-04 21:21:34,919 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: poll_exit
+2024-09-04 21:21:34,920 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: server_info
+2024-09-04 21:21:34,920 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: server_info
+2024-09-04 21:21:34,922 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: poll_exit
+2024-09-04 21:21:34,922 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: get_summary
+2024-09-04 21:21:34,923 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: sampled_history
+2024-09-04 21:21:34,925 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: internal_messages
+2024-09-04 21:21:35,106 DEBUG   SenderThread:84883 [sender.py:send_request():418] send_request: poll_exit
+2024-09-04 21:21:35,106 INFO    MainThread:84883 [wandb_run.py:_footer_history_summary_info():4078] rendering history
+2024-09-04 21:21:35,107 INFO    MainThread:84883 [wandb_run.py:_footer_history_summary_info():4110] rendering summary
+2024-09-04 21:21:35,107 INFO    MainThread:84883 [wandb_run.py:_footer_sync_info():4037] logging synced files
+2024-09-04 21:21:35,107 DEBUG   HandlerThread:84883 [handler.py:handle_request():158] handle_request: shutdown
+2024-09-04 21:21:35,108 INFO    HandlerThread:84883 [handler.py:finish():884] shutting down handler
+2024-09-04 21:21:35,922 INFO    WriterThread:84883 [datastore.py:close():296] close: /home/hyunwoo/바탕화면/multi-agent/results/smac/3m/rmappo/check/wandb/run-20240904_210459-a8qdwyr4/run-a8qdwyr4.wandb
+2024-09-04 21:21:36,106 INFO    SenderThread:84883 [sender.py:finish():1631] shutting down sender
+2024-09-04 21:21:36,106 INFO    SenderThread:84883 [file_pusher.py:finish():169] shutting down file pusher
+2024-09-04 21:21:36,106 INFO    SenderThread:84883 [file_pusher.py:join():175] waiting for file pusher

@@ -1,0 +1,95 @@
+/home/hyunwoo/miniconda3/envs/smac/lib/python3.11/site-packages/s2clientprotocol/common_pb2.py:19: DeprecationWarning: Call to deprecated create function FileDescriptor(). Note: Create unlinked descriptors is going to go away. Please use get/find descriptors from generated code or query the descriptor_pool.
+  DESCRIPTOR = _descriptor.FileDescriptor(
+/home/hyunwoo/miniconda3/envs/smac/lib/python3.11/site-packages/s2clientprotocol/common_pb2.py:32: DeprecationWarning: Call to deprecated create function EnumValueDescriptor(). Note: Create unlinked descriptors is going to go away. Please use get/find descriptors from generated code or query the descriptor_pool.
+  _descriptor.EnumValueDescriptor(
+/home/hyunwoo/miniconda3/envs/smac/lib/python3.11/site-packages/s2clientprotocol/common_pb2.py:26: DeprecationWarning: Call to deprecated create function EnumDescriptor(). Note: Create unlinked descriptors is going to go away. Please use get/find descriptors from generated code or query the descriptor_pool.
+  _RACE = _descriptor.EnumDescriptor(
+/home/hyunwoo/miniconda3/envs/smac/lib/python3.11/site-packages/s2clientprotocol/common_pb2.py:76: DeprecationWarning: Call to deprecated create function FieldDescriptor(). Note: Create unlinked descriptors is going to go away. Please use get/find descriptors from generated code or query the descriptor_pool.
+  _descriptor.FieldDescriptor(
+/home/hyunwoo/miniconda3/envs/smac/lib/python3.11/site-packages/s2clientprotocol/common_pb2.py:69: DeprecationWarning: Call to deprecated create function Descriptor(). Note: Create unlinked descriptors is going to go away. Please use get/find descriptors from generated code or query the descriptor_pool.
+  _AVAILABLEABILITY = _descriptor.Descriptor(
+/home/hyunwoo/miniconda3/envs/smac/lib/python3.11/site-packages/s2clientprotocol/data_pb2.py:20: DeprecationWarning: Call to deprecated create function FileDescriptor(). Note: Create unlinked descriptors is going to go away. Please use get/find descriptors from generated code or query the descriptor_pool.
+  DESCRIPTOR = _descriptor.FileDescriptor(
+/home/hyunwoo/miniconda3/envs/smac/lib/python3.11/site-packages/s2clientprotocol/data_pb2.py:34: DeprecationWarning: Call to deprecated create function EnumValueDescriptor(). Note: Create unlinked descriptors is going to go away. Please use get/find descriptors from generated code or query the descriptor_pool.
+  _descriptor.EnumValueDescriptor(
+/home/hyunwoo/miniconda3/envs/smac/lib/python3.11/site-packages/s2clientprotocol/data_pb2.py:28: DeprecationWarning: Call to deprecated create function EnumDescriptor(). Note: Create unlinked descriptors is going to go away. Please use get/find descriptors from generated code or query the descriptor_pool.
+  _ATTRIBUTE = _descriptor.EnumDescriptor(
+/home/hyunwoo/miniconda3/envs/smac/lib/python3.11/site-packages/s2clientprotocol/data_pb2.py:168: DeprecationWarning: Call to deprecated create function FieldDescriptor(). Note: Create unlinked descriptors is going to go away. Please use get/find descriptors from generated code or query the descriptor_pool.
+  _descriptor.FieldDescriptor(
+/home/hyunwoo/miniconda3/envs/smac/lib/python3.11/site-packages/s2clientprotocol/data_pb2.py:161: DeprecationWarning: Call to deprecated create function Descriptor(). Note: Create unlinked descriptors is going to go away. Please use get/find descriptors from generated code or query the descriptor_pool.
+  _ABILITYDATA = _descriptor.Descriptor(
+ Map 3m Algo rmappo Exp check updates 0/625 episodes, total num timesteps 16000/10000000.0, FPS 780.
+incre win rate is 0.0.
+/home/hyunwoo/바탕화면/multi-agent/onpolicy/envs/starcraft2/StarCraft2_Env.py:462: DeprecationWarning: Conversion of an array with ndim > 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
+  actions_int = [int(a) for a in actions]
+eval win rate is 0.5625.
+ Map 3m Algo rmappo Exp check updates 5/625 episodes, total num timesteps 96000/10000000.0, FPS 1445.
+incre win rate is 0.0.
+ Map 3m Algo rmappo Exp check updates 10/625 episodes, total num timesteps 176000/10000000.0, FPS 1666.
+incre win rate is 0.030546207610665285.
+ Map 3m Algo rmappo Exp check updates 15/625 episodes, total num timesteps 256000/10000000.0, FPS 1770.
+incre win rate is 0.2811073059360731.
+ Map 3m Algo rmappo Exp check updates 20/625 episodes, total num timesteps 336000/10000000.0, FPS 1796.
+incre win rate is 0.5557851239669421.
+ Map 3m Algo rmappo Exp check updates 25/625 episodes, total num timesteps 416000/10000000.0, FPS 1826.
+incre win rate is 0.7344797435150102.
+eval win rate is 0.90625.
+ Map 3m Algo rmappo Exp check updates 30/625 episodes, total num timesteps 496000/10000000.0, FPS 1819.
+incre win rate is 0.8525840158147416.
+ Map 3m Algo rmappo Exp check updates 35/625 episodes, total num timesteps 576000/10000000.0, FPS 1816.
+incre win rate is 0.9182771949199338.
+ Map 3m Algo rmappo Exp check updates 40/625 episodes, total num timesteps 656000/10000000.0, FPS 1802.
+incre win rate is 0.9467358645178913.
+ Map 3m Algo rmappo Exp check updates 45/625 episodes, total num timesteps 736000/10000000.0, FPS 1791.
+incre win rate is 0.9477713973202079.
+ Map 3m Algo rmappo Exp check updates 50/625 episodes, total num timesteps 816000/10000000.0, FPS 1793.
+incre win rate is 0.9606619641888225.
+eval win rate is 1.0.
+ Map 3m Algo rmappo Exp check updates 55/625 episodes, total num timesteps 896000/10000000.0, FPS 1799.
+incre win rate is 0.975596674711719.
+ Map 3m Algo rmappo Exp check updates 60/625 episodes, total num timesteps 976000/10000000.0, FPS 1814.
+incre win rate is 0.9683510638297872.
+ Map 3m Algo rmappo Exp check updates 65/625 episodes, total num timesteps 1056000/10000000.0, FPS 1826.
+incre win rate is 0.9755968169761273.
+ Map 3m Algo rmappo Exp check updates 70/625 episodes, total num timesteps 1136000/10000000.0, FPS 1827.
+incre win rate is 0.9788415763025654.
+ Map 3m Algo rmappo Exp check updates 75/625 episodes, total num timesteps 1216000/10000000.0, FPS 1828.
+incre win rate is 0.9752566464859174.
+eval win rate is 1.0.
+ Map 3m Algo rmappo Exp check updates 80/625 episodes, total num timesteps 1296000/10000000.0, FPS 1832.
+incre win rate is 0.9856020942408377.
+ Map 3m Algo rmappo Exp check updates 85/625 episodes, total num timesteps 1376000/10000000.0, FPS 1840.
+incre win rate is 0.9846793040768631.
+ Map 3m Algo rmappo Exp check updates 90/625 episodes, total num timesteps 1456000/10000000.0, FPS 1848.
+incre win rate is 0.9811904148415357.
+ Map 3m Algo rmappo Exp check updates 95/625 episodes, total num timesteps 1536000/10000000.0, FPS 1856.
+incre win rate is 0.988250319284802.
+ Map 3m Algo rmappo Exp check updates 100/625 episodes, total num timesteps 1616000/10000000.0, FPS 1863.
+incre win rate is 0.9873577749683944.
+eval win rate is 1.0.
+ Map 3m Algo rmappo Exp check updates 105/625 episodes, total num timesteps 1696000/10000000.0, FPS 1864.
+incre win rate is 0.9936980085707083.
+ Map 3m Algo rmappo Exp check updates 110/625 episodes, total num timesteps 1776000/10000000.0, FPS 1870.
+incre win rate is 0.99175.
+Traceback (most recent call last):
+  File "/home/hyunwoo/바탕화면/multi-agent/onpolicy/train_smac.py", line 143, in <module>
+    main(args=sys.argv[1:])
+  File "/home/hyunwoo/바탕화면/multi-agent/onpolicy/train_smac.py", line 137, in main
+    runner.run()
+  File "/home/hyunwoo/바탕화면/multi-agent/onpolicy/runner/shared/smac_runner.py", line 42, in run
+    self.compute()
+  File "/home/hyunwoo/miniconda3/envs/smac/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hyunwoo/바탕화면/multi-agent/onpolicy/runner/shared/base_runner.py", line 183, in compute
+    self.buffer.compute_returns(next_values, self.trainer.value_normalizer)
+  File "/home/hyunwoo/바탕화면/multi-agent/onpolicy/utils/shared_buffer.py", line 254, in compute_returns
+    delta = self.rewards[step] + self.gamma * value_normalizer.denormalize(
+                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hyunwoo/바탕화면/multi-agent/onpolicy/utils/valuenorm.py", line 74, in denormalize
+    mean, var = self.running_mean_var()
+                ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hyunwoo/바탕화면/multi-agent/onpolicy/utils/valuenorm.py", line 34, in running_mean_var
+    debiased_mean_sq = self.running_mean_sq / self.debiasing_term.clamp(min=self.epsilon)
+                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
