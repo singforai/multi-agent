@@ -55,7 +55,7 @@ def make_eval_env(all_args):
 def parse_args(args, parser):
     function = parser.add_argument
     function('--map_name', type=str, default='MMM',
-                choices = ["3m", "2s3z", "1c3s5z","MMM","3s5z_vs_3s6z"],
+                choices = ["3m", "5m_vs_6m", "2s3z", "1c3s5z","MMM","3s5z_vs_3s6z"],
                 help="Which smac map to run on")
     function("--add_move_state", action='store_true', default=False)
     function("--add_local_obs", action='store_true', default=False)

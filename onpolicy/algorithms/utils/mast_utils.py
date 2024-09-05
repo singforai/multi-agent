@@ -186,9 +186,9 @@ class RFF(nn.Module):
         super().__init__()
         
         self.layers = nn.Sequential(
-            nn.Linear(d, d), nn.ReLU(inplace=True),
-            nn.Linear(d, d), nn.ReLU(inplace=True),
-            nn.Linear(d, d), nn.ReLU(inplace=True)
+            nn.Linear(d, d), nn.ReLU(inplace= True),
+            nn.Linear(d, d), nn.ReLU(inplace= True),
+            nn.Linear(d, d), nn.ReLU(inplace= True)
         )
 
     def forward(self, x):

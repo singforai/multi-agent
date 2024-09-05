@@ -1,0 +1,67 @@
+ Map MMM Algo mast Exp v3 updates 0/6250000 episodes, total num timesteps 16000/100000000000.0, FPS 472.
+incre win rate is 0.0.
+eval win rate is 0.0.
+ Map MMM Algo mast Exp v3 updates 5/6250000 episodes, total num timesteps 96000/100000000000.0, FPS 615.
+incre win rate is 0.0.
+ Map MMM Algo mast Exp v3 updates 10/6250000 episodes, total num timesteps 176000/100000000000.0, FPS 675.
+incre win rate is 0.0.
+ Map MMM Algo mast Exp v3 updates 15/6250000 episodes, total num timesteps 256000/100000000000.0, FPS 701.
+incre win rate is 0.0.
+eval win rate is 0.09523809523809523.
+ Map MMM Algo mast Exp v3 updates 20/6250000 episodes, total num timesteps 336000/100000000000.0, FPS 693.
+incre win rate is 0.0.
+ Map MMM Algo mast Exp v3 updates 25/6250000 episodes, total num timesteps 416000/100000000000.0, FPS 707.
+incre win rate is 0.0.
+ Map MMM Algo mast Exp v3 updates 30/6250000 episodes, total num timesteps 496000/100000000000.0, FPS 718.
+incre win rate is 0.0021231422505307855.
+eval win rate is 0.4883720930232558.
+ Map MMM Algo mast Exp v3 updates 35/6250000 episodes, total num timesteps 576000/100000000000.0, FPS 726.
+incre win rate is 0.020989505247376312.
+ Map MMM Algo mast Exp v3 updates 40/6250000 episodes, total num timesteps 656000/100000000000.0, FPS 735.
+incre win rate is 0.08743169398907104.
+ Map MMM Algo mast Exp v3 updates 45/6250000 episodes, total num timesteps 736000/100000000000.0, FPS 740.
+incre win rate is 0.23852459016393443.
+eval win rate is 1.0.
+ Map MMM Algo mast Exp v3 updates 50/6250000 episodes, total num timesteps 816000/100000000000.0, FPS 744.
+incre win rate is 0.3763955342902711.
+ Map MMM Algo mast Exp v3 updates 55/6250000 episodes, total num timesteps 896000/100000000000.0, FPS 746.
+incre win rate is 0.5279823269513991.
+ Map MMM Algo mast Exp v3 updates 60/6250000 episodes, total num timesteps 976000/100000000000.0, FPS 746.
+incre win rate is 0.6645833333333333.
+eval win rate is 1.0.
+ Map MMM Algo mast Exp v3 updates 65/6250000 episodes, total num timesteps 1056000/100000000000.0, FPS 745.
+incre win rate is 0.734375.
+ Map MMM Algo mast Exp v3 updates 70/6250000 episodes, total num timesteps 1136000/100000000000.0, FPS 745.
+incre win rate is 0.7904312668463612.
+ Map MMM Algo mast Exp v3 updates 75/6250000 episodes, total num timesteps 1216000/100000000000.0, FPS 743.
+incre win rate is 0.8357827476038339.
+eval win rate is 1.0.
+ Map MMM Algo mast Exp v3 updates 80/6250000 episodes, total num timesteps 1296000/100000000000.0, FPS 741.
+incre win rate is 0.8886872353297036.
+Traceback (most recent call last):
+  File "/home/hyunwoo/바탕화면/multi-agent/onpolicy/train_smac.py", line 143, in <module>
+    main(args=sys.argv[1:])
+  File "/home/hyunwoo/바탕화면/multi-agent/onpolicy/train_smac.py", line 137, in main
+    runner.run()
+  File "/home/hyunwoo/바탕화면/multi-agent/onpolicy/runner/shared/smac_runner.py", line 32, in run
+    obs, share_obs, rewards, dones, infos, available_actions = self.envs.step(actions)
+                                                               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hyunwoo/바탕화면/multi-agent/onpolicy/envs/env_wrappers.py", line 106, in step
+    return self.step_wait()
+           ^^^^^^^^^^^^^^^^
+  File "/home/hyunwoo/바탕화면/multi-agent/onpolicy/envs/env_wrappers.py", line 368, in step_wait
+    results = [remote.recv() for remote in self.remotes]
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hyunwoo/바탕화면/multi-agent/onpolicy/envs/env_wrappers.py", line 368, in <listcomp>
+    results = [remote.recv() for remote in self.remotes]
+               ^^^^^^^^^^^^^
+  File "/home/hyunwoo/miniconda3/envs/smac/lib/python3.11/multiprocessing/connection.py", line 249, in recv
+    buf = self._recv_bytes()
+          ^^^^^^^^^^^^^^^^^^
+  File "/home/hyunwoo/miniconda3/envs/smac/lib/python3.11/multiprocessing/connection.py", line 413, in _recv_bytes
+    buf = self._recv(4)
+          ^^^^^^^^^^^^^
+  File "/home/hyunwoo/miniconda3/envs/smac/lib/python3.11/multiprocessing/connection.py", line 378, in _recv
+    chunk = read(handle, remaining)
+            ^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

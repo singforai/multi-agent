@@ -1,0 +1,111 @@
+ Map 3m Algo mast Exp v3 updates 0/6250000 episodes, total num timesteps 16000/100000000000.0, FPS 728.
+incre win rate is 0.0.
+eval win rate is 0.15625.
+ Map 3m Algo mast Exp v3 updates 2/6250000 episodes, total num timesteps 48000/100000000000.0, FPS 925.
+incre win rate is 0.0.
+ Map 3m Algo mast Exp v3 updates 4/6250000 episodes, total num timesteps 80000/100000000000.0, FPS 1152.
+incre win rate is 0.0.
+ Map 3m Algo mast Exp v3 updates 6/6250000 episodes, total num timesteps 112000/100000000000.0, FPS 1286.
+incre win rate is 0.000687757909215956.
+ Map 3m Algo mast Exp v3 updates 8/6250000 episodes, total num timesteps 144000/100000000000.0, FPS 1362.
+incre win rate is 0.0006480881399870382.
+ Map 3m Algo mast Exp v3 updates 10/6250000 episodes, total num timesteps 176000/100000000000.0, FPS 1414.
+incre win rate is 0.005761843790012804.
+ Map 3m Algo mast Exp v3 updates 12/6250000 episodes, total num timesteps 208000/100000000000.0, FPS 1459.
+incre win rate is 0.016276041666666668.
+ Map 3m Algo mast Exp v3 updates 14/6250000 episodes, total num timesteps 240000/100000000000.0, FPS 1496.
+incre win rate is 0.05383580080753701.
+eval win rate is 0.75.
+ Map 3m Algo mast Exp v3 updates 16/6250000 episodes, total num timesteps 272000/100000000000.0, FPS 1521.
+incre win rate is 0.10544452101998622.
+ Map 3m Algo mast Exp v3 updates 18/6250000 episodes, total num timesteps 304000/100000000000.0, FPS 1541.
+incre win rate is 0.21238300935925125.
+ Map 3m Algo mast Exp v3 updates 20/6250000 episodes, total num timesteps 336000/100000000000.0, FPS 1562.
+incre win rate is 0.295970695970696.
+ Map 3m Algo mast Exp v3 updates 22/6250000 episodes, total num timesteps 368000/100000000000.0, FPS 1581.
+incre win rate is 0.38520213577421814.
+ Map 3m Algo mast Exp v3 updates 24/6250000 episodes, total num timesteps 400000/100000000000.0, FPS 1599.
+incre win rate is 0.43984674329501916.
+ Map 3m Algo mast Exp v3 updates 26/6250000 episodes, total num timesteps 432000/100000000000.0, FPS 1614.
+incre win rate is 0.48864526233359434.
+ Map 3m Algo mast Exp v3 updates 28/6250000 episodes, total num timesteps 464000/100000000000.0, FPS 1628.
+incre win rate is 0.5252918287937743.
+ Map 3m Algo mast Exp v3 updates 30/6250000 episodes, total num timesteps 496000/100000000000.0, FPS 1639.
+incre win rate is 0.5951825951825952.
+eval win rate is 0.96875.
+ Map 3m Algo mast Exp v3 updates 32/6250000 episodes, total num timesteps 528000/100000000000.0, FPS 1647.
+incre win rate is 0.6496913580246914.
+ Map 3m Algo mast Exp v3 updates 34/6250000 episodes, total num timesteps 560000/100000000000.0, FPS 1656.
+incre win rate is 0.671583850931677.
+ Map 3m Algo mast Exp v3 updates 36/6250000 episodes, total num timesteps 592000/100000000000.0, FPS 1665.
+incre win rate is 0.7219662058371735.
+ Map 3m Algo mast Exp v3 updates 38/6250000 episodes, total num timesteps 624000/100000000000.0, FPS 1670.
+incre win rate is 0.7507552870090635.
+ Map 3m Algo mast Exp v3 updates 40/6250000 episodes, total num timesteps 656000/100000000000.0, FPS 1676.
+incre win rate is 0.7808946171341926.
+ Map 3m Algo mast Exp v3 updates 42/6250000 episodes, total num timesteps 688000/100000000000.0, FPS 1682.
+incre win rate is 0.8136094674556213.
+ Map 3m Algo mast Exp v3 updates 44/6250000 episodes, total num timesteps 720000/100000000000.0, FPS 1686.
+incre win rate is 0.8328488372093024.
+eval win rate is 0.875.
+ Map 3m Algo mast Exp v3 updates 46/6250000 episodes, total num timesteps 752000/100000000000.0, FPS 1687.
+incre win rate is 0.8450909090909091.
+ Map 3m Algo mast Exp v3 updates 48/6250000 episodes, total num timesteps 784000/100000000000.0, FPS 1690.
+incre win rate is 0.8565248738284066.
+Traceback (most recent call last):
+  File "/home/hyunwoo/바탕화면/multi-agent/onpolicy/train_smac.py", line 143, in <module>
+    main(args=sys.argv[1:])
+  File "/home/hyunwoo/바탕화면/multi-agent/onpolicy/train_smac.py", line 137, in main
+    runner.run()
+  File "/home/hyunwoo/바탕화면/multi-agent/onpolicy/runner/shared/smac_runner.py", line 29, in run
+    values, actions, action_log_probs, rnn_states, rnn_states_critic = self.collect(step)
+                                                                       ^^^^^^^^^^^^^^^^^^
+  File "/home/hyunwoo/miniconda3/envs/smac/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hyunwoo/바탕화면/multi-agent/onpolicy/runner/shared/smac_runner.py", line 110, in collect
+    = self.trainer.policy.get_actions(np.concatenate(self.buffer.share_obs[step]),
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hyunwoo/바탕화면/multi-agent/onpolicy/algorithms/mast/algorithm/MastPolicy.py", line 42, in get_actions
+    values, actions, action_log_probs, rnn_states, rnn_states_critic = self.model.get_actions(
+                                                                       ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hyunwoo/바탕화면/multi-agent/onpolicy/algorithms/mast/algorithm/setransformer.py", line 214, in get_actions
+    values, rnn_states_critic = self.decoder(
+                                ^^^^^^^^^^^^^
+  File "/home/hyunwoo/miniconda3/envs/smac/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hyunwoo/miniconda3/envs/smac/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hyunwoo/바탕화면/multi-agent/onpolicy/algorithms/mast/algorithm/setransformer.py", line 146, in forward
+    feature, rnn_states= self.feature_encoder(input, rnn_states, masks)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hyunwoo/miniconda3/envs/smac/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hyunwoo/miniconda3/envs/smac/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hyunwoo/바탕화면/multi-agent/onpolicy/algorithms/mast/algorithm/setransformer.py", line 38, in forward
+    embedding_features, rnn_states = self.rnn_layer(feature, rnn_states, masks)
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hyunwoo/miniconda3/envs/smac/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hyunwoo/miniconda3/envs/smac/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hyunwoo/바탕화면/multi-agent/onpolicy/algorithms/utils/rnn.py", line 26, in forward
+    x, hxs = self.rnn(x.unsqueeze(0),
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hyunwoo/miniconda3/envs/smac/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hyunwoo/miniconda3/envs/smac/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hyunwoo/miniconda3/envs/smac/lib/python3.11/site-packages/torch/nn/modules/rnn.py", line 1139, in forward
+    result = _VF.gru(input, hx, self._flat_weights, self.bias, self.num_layers,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

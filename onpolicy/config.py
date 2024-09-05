@@ -36,9 +36,9 @@ def get_config():
                         action='store_false', default=True, help="by default, make sure random seed effective. if set, bypass such function.")
     function("--n_torch_threads", type=int,
                         default=10, help="Number of torch threads for training")
-    function("--n_rollout_threads", type=int, default=2,
+    function("--n_rollout_threads", type=int, default=15,
                         help="Number of parallel envs for training rollouts")
-    function("--n_eval_rollout_threads", type=int, default=1,
+    function("--n_eval_rollout_threads", type=int, default= 15,
                         help="Number of parallel envs for evaluating rollouts")
     function("--n_render_rollout_threads", type=int, default=1,
                         help="Number of parallel envs for rendering rollouts")
@@ -72,8 +72,8 @@ def get_config():
                         default=True, help="Whether to use ReLU")
     function("--use_popart", action='store_true', default=False, help="by default False, use PopArt to normalize rewards.")
     function("--use_valuenorm", action='store_false', default=True, help="by default True, use running mean and std to normalize rewards.")
-    function("--use_feature_normalization", action='store_true',
-                        default=False, help="Whether to apply layernorm to the inputs")
+    function("--use_feature_normalization", action='store_false',
+                        default=True, help="Whether to apply layernorm to the inputs")
     function("--use_orthogonal", action='store_false', default=True,
                         help="Whether to use Orthogonal initialization for weights and 0 initialization for biases")
     function("--gain", type=float, default=0.01,
@@ -144,12 +144,12 @@ def get_config():
     function("--save_interval", type=int, default=1, help="time duration between contiunous twice models saving.")
 
     # log parameters
-    function("--log_interval", type=int, default=5, help="time duration between contiunous twice log printing.")
+    function("--log_interval", type=int, default=2, help="time duration between contiunous twice log printing.")
 
     # eval parameters
     function("--use_eval", action='store_false', default=True, help="by default, do not start evaluation. If set`, start evaluation alongside with training.")
-    function("--eval_interval", type=int, default=25, help="time duration between contiunous twice evaluation progress.")
-    function("--eval_episodes", type=int, default=32, help="number of episodes of a single evaluation.")
+    function("--eval_interval", type=int, default=15, help="time duration between contiunous twice evaluation progress.")
+    function("--eval_episodes", type=int, default=15, help="number of episodes of a single evaluation.")
 
     # render parameters
     function("--save_gifs", action='store_true', default=False, help="by default, do not save render video. If set, save video.")

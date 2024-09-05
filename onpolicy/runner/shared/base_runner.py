@@ -65,6 +65,7 @@ class Runner(object):
         elif self.algorithm_name == "mast":
             from algorithms.mast.mast import Mast as TrainAlgo
             from algorithms.mast.algorithm.MastPolicy import MastPolicy as Policy
+            
         else:
             from algorithms.r_mappo.r_mappo import R_MAPPO as TrainAlgo
             from algorithms.r_mappo.algorithm.rMAPPOPolicy import R_MAPPOPolicy as Policy
@@ -93,7 +94,7 @@ class Runner(object):
             self.policy = Policy(
                 args = self.all_args, 
                 obs_space = observation_space, 
-                cent_obs_space = share_observation_space, 
+                cent_obs_space = observation_space, 
                 act_space = self.envs.action_space[0], 
                 num_agents = self.num_agents, 
                 device = self.device

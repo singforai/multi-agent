@@ -1,0 +1,91 @@
+/home/hyunwoo/miniconda3/envs/smac/lib/python3.11/site-packages/s2clientprotocol/common_pb2.py:19: DeprecationWarning: Call to deprecated create function FileDescriptor(). Note: Create unlinked descriptors is going to go away. Please use get/find descriptors from generated code or query the descriptor_pool.
+  DESCRIPTOR = _descriptor.FileDescriptor(
+/home/hyunwoo/miniconda3/envs/smac/lib/python3.11/site-packages/s2clientprotocol/common_pb2.py:32: DeprecationWarning: Call to deprecated create function EnumValueDescriptor(). Note: Create unlinked descriptors is going to go away. Please use get/find descriptors from generated code or query the descriptor_pool.
+  _descriptor.EnumValueDescriptor(
+/home/hyunwoo/miniconda3/envs/smac/lib/python3.11/site-packages/s2clientprotocol/common_pb2.py:26: DeprecationWarning: Call to deprecated create function EnumDescriptor(). Note: Create unlinked descriptors is going to go away. Please use get/find descriptors from generated code or query the descriptor_pool.
+  _RACE = _descriptor.EnumDescriptor(
+/home/hyunwoo/miniconda3/envs/smac/lib/python3.11/site-packages/s2clientprotocol/common_pb2.py:76: DeprecationWarning: Call to deprecated create function FieldDescriptor(). Note: Create unlinked descriptors is going to go away. Please use get/find descriptors from generated code or query the descriptor_pool.
+  _descriptor.FieldDescriptor(
+/home/hyunwoo/miniconda3/envs/smac/lib/python3.11/site-packages/s2clientprotocol/common_pb2.py:69: DeprecationWarning: Call to deprecated create function Descriptor(). Note: Create unlinked descriptors is going to go away. Please use get/find descriptors from generated code or query the descriptor_pool.
+  _AVAILABLEABILITY = _descriptor.Descriptor(
+/home/hyunwoo/miniconda3/envs/smac/lib/python3.11/site-packages/s2clientprotocol/data_pb2.py:20: DeprecationWarning: Call to deprecated create function FileDescriptor(). Note: Create unlinked descriptors is going to go away. Please use get/find descriptors from generated code or query the descriptor_pool.
+  DESCRIPTOR = _descriptor.FileDescriptor(
+/home/hyunwoo/miniconda3/envs/smac/lib/python3.11/site-packages/s2clientprotocol/data_pb2.py:34: DeprecationWarning: Call to deprecated create function EnumValueDescriptor(). Note: Create unlinked descriptors is going to go away. Please use get/find descriptors from generated code or query the descriptor_pool.
+  _descriptor.EnumValueDescriptor(
+/home/hyunwoo/miniconda3/envs/smac/lib/python3.11/site-packages/s2clientprotocol/data_pb2.py:28: DeprecationWarning: Call to deprecated create function EnumDescriptor(). Note: Create unlinked descriptors is going to go away. Please use get/find descriptors from generated code or query the descriptor_pool.
+  _ATTRIBUTE = _descriptor.EnumDescriptor(
+/home/hyunwoo/miniconda3/envs/smac/lib/python3.11/site-packages/s2clientprotocol/data_pb2.py:168: DeprecationWarning: Call to deprecated create function FieldDescriptor(). Note: Create unlinked descriptors is going to go away. Please use get/find descriptors from generated code or query the descriptor_pool.
+  _descriptor.FieldDescriptor(
+/home/hyunwoo/miniconda3/envs/smac/lib/python3.11/site-packages/s2clientprotocol/data_pb2.py:161: DeprecationWarning: Call to deprecated create function Descriptor(). Note: Create unlinked descriptors is going to go away. Please use get/find descriptors from generated code or query the descriptor_pool.
+  _ABILITYDATA = _descriptor.Descriptor(
+ Map 3m Algo mast Exp mast_v2 updates 0/6250000 episodes, total num timesteps 16000/100000000000.0, FPS 760.
+incre win rate is 0.0.
+/home/hyunwoo/바탕화면/multi-agent/onpolicy/envs/starcraft2/StarCraft2_Env.py:462: DeprecationWarning: Conversion of an array with ndim > 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
+  actions_int = [int(a) for a in actions]
+eval win rate is 0.375.
+ Map 3m Algo mast Exp mast_v2 updates 5/6250000 episodes, total num timesteps 96000/100000000000.0, FPS 1372.
+incre win rate is 0.0.
+ Map 3m Algo mast Exp mast_v2 updates 10/6250000 episodes, total num timesteps 176000/100000000000.0, FPS 1570.
+incre win rate is 0.0005192107995846313.
+ Map 3m Algo mast Exp mast_v2 updates 15/6250000 episodes, total num timesteps 256000/100000000000.0, FPS 1653.
+incre win rate is 0.021654056874510826.
+ Map 3m Algo mast Exp mast_v2 updates 20/6250000 episodes, total num timesteps 336000/100000000000.0, FPS 1703.
+incre win rate is 0.1286908077994429.
+ Map 3m Algo mast Exp mast_v2 updates 25/6250000 episodes, total num timesteps 416000/100000000000.0, FPS 1740.
+incre win rate is 0.3431516936671576.
+eval win rate is 0.8125.
+ Map 3m Algo mast Exp mast_v2 updates 30/6250000 episodes, total num timesteps 496000/100000000000.0, FPS 1750.
+incre win rate is 0.5925256178420736.
+ Map 3m Algo mast Exp mast_v2 updates 35/6250000 episodes, total num timesteps 576000/100000000000.0, FPS 1770.
+incre win rate is 0.7382671480144405.
+ Map 3m Algo mast Exp mast_v2 updates 40/6250000 episodes, total num timesteps 656000/100000000000.0, FPS 1784.
+incre win rate is 0.8194568785437183.
+ Map 3m Algo mast Exp mast_v2 updates 45/6250000 episodes, total num timesteps 736000/100000000000.0, FPS 1793.
+incre win rate is 0.8714494875549048.
+ Map 3m Algo mast Exp mast_v2 updates 50/6250000 episodes, total num timesteps 816000/100000000000.0, FPS 1801.
+incre win rate is 0.8997689196995956.
+eval win rate is 0.90625.
+ Map 3m Algo mast Exp mast_v2 updates 55/6250000 episodes, total num timesteps 896000/100000000000.0, FPS 1796.
+incre win rate is 0.912006812375816.
+ Map 3m Algo mast Exp mast_v2 updates 60/6250000 episodes, total num timesteps 976000/100000000000.0, FPS 1799.
+incre win rate is 0.9387583892617449.
+ Map 3m Algo mast Exp mast_v2 updates 65/6250000 episodes, total num timesteps 1056000/100000000000.0, FPS 1802.
+incre win rate is 0.9551705170517052.
+ Map 3m Algo mast Exp mast_v2 updates 70/6250000 episodes, total num timesteps 1136000/100000000000.0, FPS 1805.
+incre win rate is 0.9577886710239651.
+ Map 3m Algo mast Exp mast_v2 updates 75/6250000 episodes, total num timesteps 1216000/100000000000.0, FPS 1809.
+incre win rate is 0.964642375168691.
+eval win rate is 1.0.
+ Map 3m Algo mast Exp mast_v2 updates 80/6250000 episodes, total num timesteps 1296000/100000000000.0, FPS 1805.
+incre win rate is 0.9754142169962586.
+ Map 3m Algo mast Exp mast_v2 updates 85/6250000 episodes, total num timesteps 1376000/100000000000.0, FPS 1807.
+incre win rate is 0.9812763713080169.
+ Map 3m Algo mast Exp mast_v2 updates 90/6250000 episodes, total num timesteps 1456000/100000000000.0, FPS 1809.
+incre win rate is 0.9826953329837441.
+Traceback (most recent call last):
+  File "/home/hyunwoo/바탕화면/multi-agent/onpolicy/train_smac.py", line 143, in <module>
+    main(args=sys.argv[1:])
+  File "/home/hyunwoo/바탕화면/multi-agent/onpolicy/train_smac.py", line 137, in main
+    runner.run()
+  File "/home/hyunwoo/바탕화면/multi-agent/onpolicy/runner/shared/smac_runner.py", line 32, in run
+    obs, share_obs, rewards, dones, infos, available_actions = self.envs.step(actions)
+                                                               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hyunwoo/바탕화면/multi-agent/onpolicy/envs/env_wrappers.py", line 106, in step
+    return self.step_wait()
+           ^^^^^^^^^^^^^^^^
+  File "/home/hyunwoo/바탕화면/multi-agent/onpolicy/envs/env_wrappers.py", line 368, in step_wait
+    results = [remote.recv() for remote in self.remotes]
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hyunwoo/바탕화면/multi-agent/onpolicy/envs/env_wrappers.py", line 368, in <listcomp>
+    results = [remote.recv() for remote in self.remotes]
+               ^^^^^^^^^^^^^
+  File "/home/hyunwoo/miniconda3/envs/smac/lib/python3.11/multiprocessing/connection.py", line 249, in recv
+    buf = self._recv_bytes()
+          ^^^^^^^^^^^^^^^^^^
+  File "/home/hyunwoo/miniconda3/envs/smac/lib/python3.11/multiprocessing/connection.py", line 413, in _recv_bytes
+    buf = self._recv(4)
+          ^^^^^^^^^^^^^
+  File "/home/hyunwoo/miniconda3/envs/smac/lib/python3.11/multiprocessing/connection.py", line 378, in _recv
+    chunk = read(handle, remaining)
+            ^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
