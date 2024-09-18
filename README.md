@@ -1,10 +1,23 @@
 # multi-agent
 
-set transformer를 이용해 share observation을 사용하지 않는 것은 하나의 거대한 장점. 
+가장 key idea 
+  1. permutation invariant(= 입력 벡터 요소의 순서와 상관없이 같은 출력을 생성하는 모델)를 이용한 joint - V-value 연산(share_obs 사용하지 않고)
+  2. self-attention(= 에이전트간의 완전한 정보 교환)을 통한 action sampling 
 
-2024-09-05 
-mast-v1 실험 결과
-head  수 4개 
-seed vector 4개 
+baseline
+  1. MAT
+     mat는 transformer를 통해 marl문제를 sequential problem으로 변환함으로써 search space가 에이전트에 대해 선형적이도록 유도했다. 다만 에이전트의 입력 순서에 따라 에이전트의 행동 집합이 크게 달라질 수 있다는 점은 mat의 행동 선택 과정이 permutation equivalance하지 않다는 것을 보여준다. positional encoding을 사용하지 않았다.(20p) 훈련 과정에서 다양한 에이전트의 순열로 훈련해야 함으로 훈련 시간이 매우 증가한다. 
+  2. RMAPPO
+     기존 MAPPO 계열 알고리즘은 actor 네트워크에서 각 에이전트간에 정보교환이 일어나지 않는다. 이것은 permutation equivalance이지만 에이전트의 협력적 행동을 유도하는데 어려움을 느끼게 할 수 있다. 단 critic에서 share observation을 통해 공통된 v-value를 추정해낼 수 있지만 share observation이 반드시 존재해야 한다는 제약조건이 존재하며 이것은 현실 세계에서의 적용을 어렵게 만든다. 
 
-3m에서는 rmappo 대비 살짝 뒤지나 MMM에서는 매우 우수한 성능 달성, 하지만 3s5z_vs_3s6z 환경에서는 보상을 높이는 방법을 탐색하지 못함, critic 출력이 actor에 영향을 받는 것이 역전파에서 문제를 일으킬 수도 있는 것으로 보임, 아니면 네트워크의 크기가 너무 작은 것도 문제가 될 수 있음. 
+our model 
+보통 CNN과 RNN이 permutation invariant하지 못하다고 불리는 이유는 각 픽셀, token을 입력 단위로 사용하기 때문, 하지만 우리가 주장하는 permutation invariant란 에이전트간의 입력 형태에 대한 invariant이기에 각 에이전트가 sequential한 데이터를 훈련한다고 해도 문제가 되지 않는다. 따라서 각 에이전트에 대해 독립적으로 연산되는 MLP, RNN을 통해 embedding한 정보를 self-attention block을 이용해 정보를 교환한 뒤, 각각 action을 샘플링하고 joint-V-value를 계산한다. 
+
+ablation research 
+  1. num head
+  2. num seed vector
+  3. pma block 유무에 따른 성능 차이(joint-V value를 계산해낼 수 있는가?)
+  4. actor / critic 역할하는 네트워크를 완전히 분리해서 실험해보기 => 굳이 transformer 구조를 취할 필요가 있는지에 대한 답이 필요함. 
+
+Quset
+  1. MAT의 인코더에서 self-attention을 통해 계산된 각 에이전트의 V값들은 joint-advantange를 계산하기 위해 사용된다. 그렇다면 joint v-value는 어떻게 계산되는 것이며(각 에이전트의 v-value는 따로 계산되는 것일까?) 이것은 permutation invariant하다고 말할 수 없으니 문제가 생길 수 있음.(한 state에서의 고유한 v를 제대로 추측해내지 못한다는 것)
