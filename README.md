@@ -11,7 +11,7 @@ baseline
      기존 MAPPO 계열 알고리즘은 actor 네트워크에서 각 에이전트간에 정보교환이 일어나지 않는다. 이것은 permutation equivalance이지만 에이전트의 협력적 행동을 유도하는데 어려움을 느끼게 할 수 있다. 단 critic에서 share observation을 통해 공통된 v-value를 추정해낼 수 있지만 share observation이 반드시 존재해야 한다는 제약조건이 존재하며 이것은 현실 세계에서의 적용을 어렵게 만든다. 
 
 our model 
-보통 CNN과 RNN이 permutation invariant하지 못하다고 불리는 이유는 각 픽셀, token을 입력 단위로 사용하기 때문, 하지만 우리가 주장하는 permutation invariant란 에이전트간의 입력 형태에 대한 invariant이기에 각 에이전트가 sequential한 데이터를 훈련한다고 해도 문제가 되지 않는다. 따라서 각 에이전트에 대해 독립적으로 연산되는 MLP, RNN을 통해 embedding한 정보를 self-attention block을 이용해 정보를 교환한 뒤, 각각 action을 샘플링하고 joint-V-value를 계산한다. 
+보통 CNN과 RNN이 permutation invariant하지 못하다고 불리는 이유는 각 픽셀, token을 입력 단위로 사용하기 때문, 하지만 우리가 주장하는 permutation invariant란 에이전트간의 입력 형태에 대한 invariant이기에 각 에이전트가 sequential한 데이터를 훈련한다고 해도 문제가 되지 않는다. 따라서 각 에이전트에 대해 독립적으로 연산되는 MLP, RNN을 통해 embedding한 정보를 self-attention block을 이용해 정보를 교환한 뒤, 각각 action을 샘플링하고 joint-V-value를 계산한다. num seed vector는 1개 이상이 되더라도 permutation invariant에 영향을 미치지 않는다. 
 
 ablation research 
   1. num head
