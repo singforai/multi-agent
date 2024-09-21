@@ -17,7 +17,7 @@ ablation research
   2. num seed vector 개수에 따른 성능 변화????
   3. pma block 유무에 따른 성능 차이(joint-V value를 계산해낼 수 있는가?)
   4. actor / critic 역할하는 네트워크를 완전히 분리해서 실험해보기 => 굳이 transformer 구조를 취할 필요가 있는지에 대한 답이 필요함.
-  5. 학습이 끝난 모델의 가중치를 분석해보는 것이 좋을까? 리플레이랑 연계해서?
+  5. 학습이 끝난 모델의 attention head 가중치를 분석해보는 것이 좋을까?
 
 Quset
   1. MAT의 인코더에서 self-attention을 통해 계산된 각 에이전트의 V값들은 joint-advantange를 계산하기 위해 사용된다. 그렇다면 joint v-value는 어떻게 계산되는 것이며(각 에이전트의 v-value는 따로 계산되는 것일까?) 이것은 permutation invariant하다고 말할 수 없으니 문제가 생길 수 있음.(한 state에서의 고유한 v를 제대로 추측해내지 못한다는 것)
