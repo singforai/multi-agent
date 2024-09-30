@@ -1,8 +1,12 @@
 import os 
-import torch 
 import math
-
+import time 
+import json
+import torch 
+import shutil
+import atexit
 import numpy as np
+
 
 
 def check(input):
@@ -74,7 +78,6 @@ def tile_images(img_nhwc):
     img_Hh_Ww_c = img_HhWwc.reshape(H*h, W*w, c)
     return img_Hh_Ww_c
 
-
 def fix_seed(seed):
     torch.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
@@ -82,3 +85,30 @@ def fix_seed(seed):
     torch.backends.cudnn.benchmark = False
     torch.backends.cudnn.deterministic = True
     
+def generate_file(all_args):
+    from gfootball.scenarios import curriculum_learning
+    time_code = int(time.time())
+    print(f"Time code: {time_code}")
+    x = str(curriculum_learning.__file__).replace('.py', '')
+    new_file_dir = f"{x}_{time_code}.py"
+    
+    file_name = f'level_{time_code}.json'
+    file_path = os.path.join('./level', file_name)
+    
+    shutil.copy(curriculum_learning.__file__, new_file_dir)
+    
+    def del_new_file():
+        if os.path.exists(new_file_dir):
+                os.remove(new_file_dir)
+        if os.path.exists(file_path):
+                os.remove(file_path)
+                
+    atexit.register(del_new_file)
+    data = {
+        'difficulty_level': 1,
+        'level_stack': 0,
+        "game_length": all_args.game_length
+    }
+    with open(file_path, 'w') as json_file:
+        json.dump(data, json_file, indent=4)
+    return new_file_dir.split("/")[-1].replace(".py", ""), file_path

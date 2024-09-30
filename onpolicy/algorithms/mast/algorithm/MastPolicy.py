@@ -35,9 +35,36 @@ class MastPolicy:
         )
 
     def lr_decay(self, episode, episodes):
+        """
+        If use_linear_lr_decay is True, the learning rate decreases linearly
+
+        Arguement:
+            - episode           | int
+            - episodes          | int
+        
+        """
         update_linear_schedule(self.optimizer, episode, episodes, self.lr)
         
     def get_actions(self, cent_obs, obs, rnn_states, rnn_states_critic, masks, available_actions=None, deterministic=False):
+        """
+        A function to sample the next action during the sampling process
+
+        Arguement:
+            - cent_obs          | np.ndarray (n_rollout_threads * num_agents, share_obs_dim)
+            - obs               | np.ndarray (n_rollout_threads * num_agents, obs_dim)
+            - rnn_states        | np.ndarray (n_rollout_threads * num_agents, recurrent_N, hidden_size)
+            - rnn_states_critic | np.ndarray (n_rollout_threads * num_agents, recurrent_N, hidden_size)
+            - masks             | np.ndarray (n_rollout_threads * num_agents, 1)
+            - available_actions | np.ndarray (n_rollout_threads * num_agents, action_space)
+            - deterministic     | bool
+
+        return:
+            - values            | tensor (n_rollout_threads * num_agents , 1)
+            - actions           | tensor (n_rollout_threads * num_agents , 1)
+            - action_log_probs  | tensor (n_rollout_threads * num_agents , 1)
+            - rnn_states        | tensor (n_rollout_threads * num_agents , recurrent_N, hidden_size)
+            - rnn_states_critic | tensor (n_rollout_threads * num_agents , recurrent_N, hidden_size)
+        """
         
         values, actions, action_log_probs, rnn_states, rnn_states_critic = self.model.get_actions(
             obs,
@@ -47,22 +74,52 @@ class MastPolicy:
             available_actions,
             deterministic,
         )
-        
         return values, actions, action_log_probs, rnn_states, rnn_states_critic
     
-    def get_values(self, cent_obs, obs, rnn_states, rnn_states_critic, masks):
+    def get_values(self, cent_obs, obs, rnn_states, rnn_states_critic, masks, available_actions=None):
+        """
+        A function to predict the values of the last step stored in the buffer 
+        for calculating the GAE return
+        
+        Arguement:
+            - cent_obs          | np.ndarray (n_rollout_threads * num_agents, share_obs_dim)
+            - obs               | np.ndarray (n_rollout_threads * num_agents, obs_dim)
+            - rnn_states        | np.ndarray (n_rollout_threads * num_agents, recurrent_N, hidden_size)
+            - rnn_states_critic | np.ndarray (n_rollout_threads * num_agents, recurrent_N, hidden_size)
+            - masks             | np.ndarray (n_rollout_threads * num_agents, 1)
+
+        return:
+            - values            | tensor (n_rollout_threads * num_agents , 1)
+        """
         values = self.model.get_values(
             obs,
             rnn_states,
             rnn_states_critic,
             masks,
         )
-        
         return values
     
     def evaluate_actions(self, obs, rnn_states, rnn_states_critic,
                           action, masks, critic_masks_batch, available_actions, active_masks):
+        """
+        A function to calculate the importance weight and value loss between the updated network 
+        from training and the network used for sampling
         
+        Arguement:
+            - obs               | np.ndarray (data_chunk_length * mini_batch_size * num_agents ,  obs_dim)
+            - rnn_states        | np.ndarray (mini_batch_size * num_agents , recurrent_N , hidden_size)
+            - rnn_states_critic | np.ndarray (mini_batch_size * num_agents , recurrent_N , hidden_size)
+            - action            | np.ndarray (data_chunk_length * mini_batch_size * num_agents ,  1)
+            - masks             | np.ndarray (data_chunk_length * mini_batch_size * num_agents ,  1)
+            - critic_masks_batch| np.ndarray (data_chunk_length * mini_batch_size * num_agents ,  1)
+            - available_actions | np.ndarray (data_chunk_length * mini_batch_size * num_agents ,  action_space)
+            - active_masks      | np.ndarray (data_chunk_length * mini_batch_size * num_agents ,  1)
+            
+        return:
+            - values            | tensor (data_chunk_length * mini_batch_size * num_agents ,  1)
+            - action_log_probs  | tensor (data_chunk_length * mini_batch_size * num_agents ,  1)
+            - dist_entropy      | tensor float
+        """
         values, action_log_probs, dist_entropy = self.model.evaluate_actions(
             obs = obs, 
             rnn_states = rnn_states,
@@ -75,7 +132,21 @@ class MastPolicy:
         )
         return values, action_log_probs, dist_entropy
     
-    def act(self, obs, rnn_states, masks, available_actions=None, deterministic=False):
+    def act(self,cent_obs, obs, rnn_states, masks, available_actions=None, deterministic=False):
+        """
+        A function for an agent to sample actions during the evaluation process
+        
+        Arguement:
+            - obs               | np.ndarray (n_rollout_threads * num_agents , obs_dim)
+            - rnn_states        | np.ndarray (n_rollout_threads * num_agents , recurrent_N , hidden_size)
+            - masks             | np.ndarray (n_rollout_threads * num_agents , 1)
+            - available_actions | np.ndarray (n_rollout_threads * num_agents , action_space)
+            - deterministic     | bool
+        
+        return:
+            - actions           | tensor (n_rollout_threads * num_agents , 1)
+            - rnn_states        | tensor (n_rollout_threads * num_agents , recurrent_N , hidden_size)
+        """
         actions, rnn_states = self.model.act(
             obs,
             rnn_states,
@@ -83,5 +154,11 @@ class MastPolicy:
             available_actions,
             deterministic,
         )
-        
         return actions, rnn_states 
+
+    def save(self, save_dir):
+        torch.save(self.model.state_dict(), str(save_dir) + "/mast.pt")
+
+    def restore(self, model_dir):
+        state_dict = torch.load(str(model_dir) + '/mast.pt')
+        self.model.load_state_dict(state_dict)

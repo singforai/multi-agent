@@ -1,3 +1,4 @@
+import os 
 import wandb
 import torch
 
@@ -28,7 +29,9 @@ class Runner(object):
         self.use_eval: bool = self.all_args.use_eval
         self.use_wandb: bool = self.all_args.use_wandb
         self.use_render: bool = self.all_args.use_render
+        self.save_model: bool = self.all_args.save_model
         self.use_centralized_V: bool = self.all_args.use_centralized_V
+        self.use_additional_obs: bool = self.all_args.use_additional_obs 
         self.use_linear_lr_decay: bool = self.all_args.use_linear_lr_decay
         self.use_obs_instead_of_state: bool = self.all_args.use_obs_instead_of_state
         
@@ -48,12 +51,16 @@ class Runner(object):
         self.n_rollout_threads: int = self.all_args.n_rollout_threads
         self.n_eval_rollout_threads: int = self.all_args.n_eval_rollout_threads
         self.n_render_rollout_threads: int = self.all_args.n_render_rollout_threads
-
+    
         # dir
         self.model_dir = self.all_args.model_dir
 
+        if self.save_model:
+            self.save_dir = f"./models/{self.experiment_name}/{self.algorithm_name}"
+            if not os.path.exists(self.save_dir):
+                os.makedirs(self.save_dir)
+
         if self.use_wandb:
-            self.save_dir = str(wandb.run.dir)
             self.run_dir = str(wandb.run.dir)
 
         if self.algorithm_name == "mat" or self.algorithm_name == "mat_dec":
@@ -65,22 +72,13 @@ class Runner(object):
         elif self.algorithm_name == "mast":
             from algorithms.mast.mast import Mast as TrainAlgo
             from algorithms.mast.algorithm.MastPolicy import MastPolicy as Policy
-            
         else:
             from algorithms.r_mappo.r_mappo import R_MAPPO as TrainAlgo
             from algorithms.r_mappo.algorithm.rMAPPOPolicy import R_MAPPOPolicy as Policy
-        if self.env_name == "football":
-            low = np.full((330,), -np.inf)
-            high = np.full((330,), np.inf)
-            observation_space = spaces.Box(low=low, high=high, dtype=np.float32)
+            
+        observation_space = self.envs.observation_space[0]
+        share_observation_space = self.envs.share_observation_space[0] if self.use_centralized_V else self.envs.observation_space[0]
 
-            low = np.full((220,), -np.inf)
-            high = np.full((220,), np.inf)
-            share_observation_space = spaces.Box(low=low, high=high, dtype=np.float32)
-        else:
-            observation_space = self.envs.observation_space[0]
-            share_observation_space = self.envs.share_observation_space[0] if self.use_centralized_V else self.envs.observation_space[0]
-        
         # policy network
         if self.algorithm_name == "mat" or self.algorithm_name == "mat_dec":
             self.policy = Policy(self.all_args, 
@@ -94,7 +92,7 @@ class Runner(object):
             self.policy = Policy(
                 args = self.all_args, 
                 obs_space = observation_space, 
-                cent_obs_space = observation_space, 
+                cent_obs_space = share_observation_space, 
                 act_space = self.envs.action_space[0], 
                 num_agents = self.num_agents, 
                 device = self.device
@@ -165,21 +163,15 @@ class Runner(object):
     def compute(self):
         """Calculate returns for the collected data."""
         self.trainer.prep_rollout()
-        if self.algorithm_name == "mat" or self.algorithm_name == "mat_dec":
-            next_values = self.trainer.policy.get_values(np.concatenate(self.buffer.share_obs[-1]),
-                                                        np.concatenate(self.buffer.obs[-1]),
-                                                        np.concatenate(self.buffer.rnn_states_critic[-1]),
-                                                        np.concatenate(self.buffer.masks[-1]))
-        elif self.algorithm_name == "mast":
-            next_values = self.trainer.policy.get_values(np.concatenate(self.buffer.share_obs[-1]),
-                                                        np.concatenate(self.buffer.obs[-1]),
-                                                        np.concatenate(self.buffer.rnn_states[-1]), 
-                                                        np.concatenate(self.buffer.rnn_states_critic[-1]),
-                                                        np.concatenate(self.buffer.masks[-1]))
-        else:
-            next_values = self.trainer.policy.get_values(np.concatenate(self.buffer.share_obs[-1]),
-                                                        np.concatenate(self.buffer.rnn_states_critic[-1]),
-                                                        np.concatenate(self.buffer.masks[-1]))
+        
+        next_values = self.trainer.policy.get_values(
+            np.concatenate(self.buffer.share_obs[-1]),
+            np.concatenate(self.buffer.obs[-1]),
+            np.concatenate(self.buffer.rnn_states[-1]),
+            np.concatenate(self.buffer.rnn_states_critic[-1]),
+            np.concatenate(self.buffer.masks[-1])
+        )
+    
         next_values = np.array(np.split(_t2n(next_values), self.n_rollout_threads))
         self.buffer.compute_returns(next_values, self.trainer.value_normalizer)
     
@@ -192,17 +184,23 @@ class Runner(object):
 
     def save(self, episode=0):
         """Save policy's actor and critic networks."""
-        if self.algorithm_name == "mat" or self.algorithm_name == "mat_dec":
-            self.policy.save(self.save_dir, episode)
-        else:
+        save_directory = f"{self.save_dir}/{episode}"
+        if not os.path.exists(save_directory):
+            os.makedirs(save_directory)
+        
+        if self.algorithm_name == "mat" or self.algorithm_name == "mat_dec" or self.algorithm_name == "mast":
+            self.policy.save(save_dir = save_directory)
+        elif self.algorithm_name == "rmappo" or self.algorithm_name == "mappo" or self.algorithm_name == "tizero":
             policy_actor = self.trainer.policy.actor
-            torch.save(policy_actor.state_dict(), str(self.save_dir) + "/actor.pt")
+            torch.save(policy_actor.state_dict(), str(save_directory) + "/actor.pt")
             policy_critic = self.trainer.policy.critic
-            torch.save(policy_critic.state_dict(), str(self.save_dir) + "/critic.pt")
+            torch.save(policy_critic.state_dict(), str(save_directory) + "/critic.pt")
+        else:
+            raise NotImplementedError
 
     def restore(self, model_dir):
         """Restore policy's networks from a saved model."""
-        if self.algorithm_name == "mat" or self.algorithm_name == "mat_dec":
+        if self.algorithm_name == "mat" or self.algorithm_name == "mat_dec" or self.algorithm_name == "mast":
             self.policy.restore(model_dir)
         else:
             policy_actor_state_dict = torch.load(str(self.model_dir) + '/actor.pt')

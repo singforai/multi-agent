@@ -14,13 +14,17 @@ class SMACRunner(Runner):
         super(SMACRunner, self).__init__(config)
 
     def run(self):
+
+        if self.all_args.use_render:
+            self.eval()
+            return 
+        
         start = time.time()
         episodes = int(self.num_env_steps) // self.episode_length // self.n_rollout_threads
         last_battles_game = np.zeros(self.n_rollout_threads, dtype=np.float32)
         last_battles_won = np.zeros(self.n_rollout_threads, dtype=np.float32)
         self.warmup()  
         for episode in range(episodes):
-            
             if self.use_linear_lr_decay:
                 self.trainer.policy.lr_decay(episode, episodes)
 
@@ -34,7 +38,7 @@ class SMACRunner(Runner):
                 data = obs, share_obs, rewards, dones, infos, available_actions, \
                        values, actions, action_log_probs, \
                        rnn_states, rnn_states_critic 
-                
+
                 # insert data into buffer
                 self.insert(data)
 
@@ -45,10 +49,7 @@ class SMACRunner(Runner):
             
             # post process
             total_num_steps = (episode + 1) * self.episode_length * self.n_rollout_threads           
-            # save model
-            # if (episode % self.save_interval == 0 or episode == episodes - 1):
-            #     self.save()
-
+            
             # log information
             if episode % self.log_interval == 0:
                 end = time.time()
@@ -87,15 +88,18 @@ class SMACRunner(Runner):
                 train_infos['dead_ratio'] = 1 - self.buffer.active_masks.sum() / reduce(lambda x, y: x*y, list(self.buffer.active_masks.shape)) 
                 train_infos["average_step_rewards"] = np.mean(self.buffer.rewards)
                 self.log_train(train_infos, total_num_steps)
-
+                
             # eval
             if episode % self.eval_interval == 0 and self.use_eval:
                 self.eval(total_num_steps)
 
+        if self.save_model and episode > 0:
+            self.save(episode = episode)
+
     def warmup(self):
         # reset env
         obs, share_obs, available_actions = self.envs.reset()
-        # replay buffer
+
         if not self.use_centralized_V:
             share_obs = obs
 
@@ -107,25 +111,25 @@ class SMACRunner(Runner):
     def collect(self, step):
         self.trainer.prep_rollout()
         value, action, action_log_prob, rnn_state, rnn_state_critic \
-            = self.trainer.policy.get_actions(np.concatenate(self.buffer.share_obs[step]),
-                                            np.concatenate(self.buffer.obs[step]),
-                                            np.concatenate(self.buffer.rnn_states[step]),
-                                            np.concatenate(self.buffer.rnn_states_critic[step]),
-                                            np.concatenate(self.buffer.masks[step]),
-                                            np.concatenate(self.buffer.available_actions[step]))
+            = self.trainer.policy.get_actions(
+            np.concatenate(self.buffer.share_obs[step]),
+            np.concatenate(self.buffer.obs[step]),
+            np.concatenate(self.buffer.rnn_states[step]),
+            np.concatenate(self.buffer.rnn_states_critic[step]),
+            np.concatenate(self.buffer.masks[step]),
+            np.concatenate(self.buffer.available_actions[step])
+        )
         # [self.envs, agents, dim]
         values = np.array(np.split(_t2n(value), self.n_rollout_threads))
         actions = np.array(np.split(_t2n(action), self.n_rollout_threads))
         action_log_probs = np.array(np.split(_t2n(action_log_prob), self.n_rollout_threads))
         rnn_states = np.array(np.split(_t2n(rnn_state), self.n_rollout_threads))
         rnn_states_critic = np.array(np.split(_t2n(rnn_state_critic), self.n_rollout_threads))
-
         return values, actions, action_log_probs, rnn_states, rnn_states_critic
 
     def insert(self, data):
         obs, share_obs, rewards, dones, infos, available_actions, \
         values, actions, action_log_probs, rnn_states, rnn_states_critic = data
-
         dones_env = np.all(dones, axis=1)
 
         rnn_states[dones_env == True] = np.zeros(((dones_env == True).sum(), self.num_agents, self.recurrent_N, self.hidden_size), dtype=np.float32)
@@ -139,10 +143,8 @@ class SMACRunner(Runner):
         active_masks[dones_env == True] = np.ones(((dones_env == True).sum(), self.num_agents, 1), dtype=np.float32)
 
         bad_masks = np.array([[[0.0] if info[agent_id]['bad_transition'] else [1.0] for agent_id in range(self.num_agents)] for info in infos])
-        
         if not self.use_centralized_V:
             share_obs = obs
-
         self.buffer.insert(share_obs, obs, rnn_states, rnn_states_critic,
                            actions, action_log_probs, values, rewards, masks, bad_masks, active_masks, available_actions)
 
@@ -152,7 +154,7 @@ class SMACRunner(Runner):
                 wandb.log({k: v}, step=total_num_steps)
     
     @torch.no_grad()
-    def eval(self, total_num_steps):
+    def eval(self, total_num_steps = 0):
         eval_battles_won = 0
         eval_episode = 0
 
@@ -163,21 +165,15 @@ class SMACRunner(Runner):
 
         while True:
             self.trainer.prep_rollout()
-            if self.algorithm_name == "mat" or self.algorithm_name == "mat_dec":
-                eval_actions, eval_rnn_states = \
-                    self.trainer.policy.act(np.concatenate(eval_share_obs),
-                                            np.concatenate(eval_obs),
-                                            np.concatenate(eval_rnn_states),
-                                            np.concatenate(eval_masks),
-                                            np.concatenate(eval_available_actions),
-                                            deterministic=True)
-            else:
-                eval_actions, eval_rnn_states = \
-                    self.trainer.policy.act(np.concatenate(eval_obs),
-                                            np.concatenate(eval_rnn_states),
-                                            np.concatenate(eval_masks),
-                                            np.concatenate(eval_available_actions),
-                                            deterministic=True)
+            eval_actions, eval_rnn_states = self.trainer.policy.act(
+                np.concatenate(eval_share_obs),
+                np.concatenate(eval_obs),
+                np.concatenate(eval_rnn_states),
+                np.concatenate(eval_masks),
+                np.concatenate(eval_available_actions),
+                deterministic=True
+            )
+                    
             eval_actions = np.array(np.split(_t2n(eval_actions), self.n_eval_rollout_threads))
             eval_rnn_states = np.array(np.split(_t2n(eval_rnn_states), self.n_eval_rollout_threads))
             
@@ -201,6 +197,6 @@ class SMACRunner(Runner):
 
                 eval_win_rate = eval_battles_won/eval_episode
                 print("eval win rate is {}.".format(eval_win_rate))
-                if self.use_wandb:
+                if self.use_wandb and (self.use_render == False):
                     wandb.log({"eval_win_rate": eval_win_rate}, step=total_num_steps)
                 break

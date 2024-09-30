@@ -23,6 +23,8 @@ class Mast():
         self.entropy_coef = args.entropy_coef
         self.max_grad_norm = args.max_grad_norm       
         self.huber_delta = args.huber_delta
+        
+        self._use_joint_action_loss = args.use_joint_action_loss
 
         self._use_max_grad_norm = args.use_max_grad_norm
         self._use_clipped_value_loss = args.use_clipped_value_loss
@@ -85,6 +87,21 @@ class Mast():
         return value_loss            
 
     def network_update(self, sample):
+        """
+        Arguements
+            - share_obs_batch
+            - obs_batch
+            - rnn_states_batch
+            - rnn_states_critic_batch
+            - actions_batch
+            - value_preds_batch
+            - return_batch
+            - masks_batch
+            - active_masks_batch
+            - old_action_log_probs_batch
+            - adv_targ
+            - available_actions_batch
+        """
         (
             share_obs_batch,
             obs_batch,
@@ -106,15 +123,16 @@ class Mast():
         active_masks_batch = check(active_masks_batch).to(**self.tpdv)
         old_action_log_probs_batch = check(old_action_log_probs_batch).to(**self.tpdv)
         
-        # share_obs_batch = self.to_single_np(share_obs_batch)
-        # rnn_states_critic_batch = self.to_single_np(rnn_states_critic_batch)
-        # critic_masks_batch = self.to_single_np(masks_batch)
-        value_preds_batch = self.to_single_np(value_preds_batch)
-        return_batch = self.to_single_np(return_batch)
-        
-        adv_targ = adv_targ.reshape(-1, self.num_agents, 1)
-        adv_targ = adv_targ[:, 0, :]
-        
+
+        if self._use_joint_action_loss:
+            # share_obs_batch = self.to_single_np(share_obs_batch)
+            # rnn_states_critic_batch = self.to_single_np(rnn_states_critic_batch)
+            # critic_masks_batch = self.to_single_np(masks_batch)
+            value_preds_batch = self.to_single_np(value_preds_batch)
+            return_batch = self.to_single_np(return_batch)
+            adv_targ = adv_targ.reshape(-1, self.num_agents, 1)
+            adv_targ = adv_targ[:, 0, :]
+
         values, action_log_probs, dist_entropy = self.policy.evaluate_actions(
             obs=obs_batch,
             rnn_states = rnn_states_batch,
@@ -125,22 +143,26 @@ class Mast():
             available_actions=available_actions_batch,
             active_masks=active_masks_batch,
         )
-
-        active_masks_batch = active_masks_batch.reshape(-1, self.num_agents, 1)
-        active_masks_batch = active_masks_batch[:, 0, :]
-
-        action_log_probs_copy = (
-            action_log_probs.reshape(-1, self.num_agents, action_log_probs.shape[-1])
-            .sum(dim=(1, -1), keepdim=True)
-            .reshape(-1, 1)
-        )
-        old_action_log_probs_batch_copy = (
-            old_action_log_probs_batch.reshape(-1, self.num_agents, old_action_log_probs_batch.shape[-1])
-            .sum(dim=(1, -1), keepdim=True)
-            .reshape(-1, 1)
-        )
         
-        imp_weights = torch.exp(action_log_probs_copy - old_action_log_probs_batch_copy)
+        if self._use_joint_action_loss:
+            values = values.reshape(-1, self.num_agents, 1)[:, 0, :].reshape(-1, 1)
+            action_log_probs_copy = (
+                action_log_probs.reshape(-1, self.num_agents, action_log_probs.shape[-1])
+                .sum(dim=(1, -1), keepdim=True)
+                .reshape(-1, 1)
+            )
+            
+            old_action_log_probs_batch_copy = (
+                old_action_log_probs_batch.reshape(-1, self.num_agents, old_action_log_probs_batch.shape[-1])
+                .sum(dim=(1, -1), keepdim=True)
+                .reshape(-1, 1)
+            )
+            active_masks_batch = active_masks_batch.reshape(-1, self.num_agents, 1)
+            active_masks_batch = active_masks_batch[:, 0, :]
+            imp_weights = torch.exp(action_log_probs_copy - old_action_log_probs_batch_copy)
+        else:
+            imp_weights = torch.exp(action_log_probs - old_action_log_probs_batch)
+        
         surr1 = imp_weights * adv_targ
         surr2 = torch.clamp(imp_weights, 1.0 - self.clip_param, 1.0 + self.clip_param) * adv_targ
 
@@ -157,25 +179,21 @@ class Mast():
 
         self.policy.optimizer.zero_grad()
         ((value_loss * self.value_loss_coef) + (policy_loss - dist_entropy * self.entropy_coef)).backward()
-            
+        
         if self._use_max_grad_norm:
-            actor_grad_norm = nn.utils.clip_grad_norm_(self.policy.model.encoder.parameters(), self.max_grad_norm)
+            encoder_grad_norm = nn.utils.clip_grad_norm_(self.policy.model.encoder.parameters(), self.max_grad_norm)
         else:
-            actor_grad_norm = get_gard_norm(self.policy.encoder.model.parameters())
-            
-        if self._use_max_grad_norm:
-            critic_grad_norm = nn.utils.clip_grad_norm_(self.policy.model.decoder.parameters(), self.max_grad_norm)
-        else:
-            critic_grad_norm = get_gard_norm(self.policy.model.decoder.parameters())
+            encoder_grad_norm = get_gard_norm(self.policy.model.encoder.parameters())
 
+        if self._use_max_grad_norm:
+            decoder_grad_norm = nn.utils.clip_grad_norm_(self.policy.model.decoder.parameters(), self.max_grad_norm)
+        else:
+            decoder_grad_norm = get_gard_norm(self.policy.model.decoder.parameters())
 
         self.policy.optimizer.step()
 
-        return value_loss, policy_loss, dist_entropy, imp_weights, actor_grad_norm, critic_grad_norm
+        return value_loss, policy_loss, dist_entropy, imp_weights, encoder_grad_norm, decoder_grad_norm
         
-    
-        return 
-
     def train(self, buffer):
         if self._use_popart or self._use_valuenorm:
             advantages = buffer.returns[:-1] - self.value_normalizer.denormalize(buffer.value_preds[:-1])
@@ -191,9 +209,9 @@ class Mast():
         train_info['value_loss'] = 0
         train_info['policy_loss'] = 0
         train_info['dist_entropy'] = 0
-        train_info['actor_grad_norm'] = 0
-        train_info['critic_grad_norm'] = 0
         train_info['ratio'] = 0
+        train_info["encoder_grad_norm"] = 0
+        train_info["decoder_grad_norm"] = 0
         
         for _ in range(self.ppo_epoch):
             data_generator = buffer.recurrent_transformer_generator(
@@ -202,14 +220,13 @@ class Mast():
                 self.data_chunk_length
             )
             for sample in data_generator:
-                value_loss, policy_loss, dist_entropy, imp_weights, \
-                actor_grad_norm, critic_grad_norm = self.network_update(sample)
+                value_loss, policy_loss, dist_entropy, imp_weights, encoder_grad_norm, decoder_grad_norm = self.network_update(sample)
                 train_info["value_loss"] += value_loss.item()
                 train_info["policy_loss"] += policy_loss.item()
                 train_info["dist_entropy"] += dist_entropy.item()
-                train_info['actor_grad_norm'] += actor_grad_norm
-                train_info['critic_grad_norm'] +=critic_grad_norm 
                 train_info["ratio"] += imp_weights.mean()
+                train_info["encoder_grad_norm"] += encoder_grad_norm
+                train_info["decoder_grad_norm"] += decoder_grad_norm
                 
         num_updates = self.ppo_epoch * self.num_mini_batch
         for k in train_info.keys():

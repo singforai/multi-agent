@@ -2,6 +2,7 @@
 Modified from OpenAI Baselines code to work with multi-agent envs
 """
 import numpy as np
+import torch
 from multiprocessing import Process, Pipe
 from abc import ABC, abstractmethod
 from utils.util import tile_images
@@ -268,6 +269,7 @@ class SubprocVecEnv(ShareVecEnv):
         for remote in self.remotes:
             remote.send(('reset', None))
         obs = [remote.recv() for remote in self.remotes]
+        print(np.stack(obs).shape)
         return np.stack(obs)
 
 
@@ -327,6 +329,8 @@ def shareworker(remote, parent_remote, env_fn_wrapper):
             env.close()
             remote.close()
             break
+        elif cmd == 'get_num_agents':
+            remote.send((env.n_agents))
         elif cmd == 'get_spaces':
             remote.send(
                 (env.observation_space, env.share_observation_space, env.action_space))
@@ -353,6 +357,8 @@ class ShareSubprocVecEnv(ShareVecEnv):
             p.start()
         for remote in self.work_remotes:
             remote.close()
+        self.remotes[0].send(('get_num_agents', None))
+        self.n_agents = self.remotes[0].recv()
         self.remotes[0].send(('get_spaces', None))
         observation_space, share_observation_space, action_space = self.remotes[0].recv(
         )
@@ -706,6 +712,7 @@ class ShareDummyVecEnv(ShareVecEnv):
     def __init__(self, env_fns):
         self.envs = [fn() for fn in env_fns]
         env = self.envs[0]
+        self.n_agents = env.n_agents
         ShareVecEnv.__init__(self, len(
             env_fns), env.observation_space, env.share_observation_space, env.action_space)
         self.actions = None
@@ -737,6 +744,10 @@ class ShareDummyVecEnv(ShareVecEnv):
     def close(self):
         for env in self.envs:
             env.close()
+
+    def save_replay(self):
+        for env in self.envs:
+            env.save_replay()
     
     def render(self, mode="human"):
         if mode == "rgb_array":

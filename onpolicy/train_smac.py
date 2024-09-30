@@ -2,7 +2,7 @@ import os
 import sys
 import torch 
 import wandb 
-
+import socket
 import warnings
 import setproctitle
 from pathlib import Path
@@ -54,9 +54,27 @@ def make_eval_env(all_args):
 
 def parse_args(args, parser):
     function = parser.add_argument
-    function('--map_name', type=str, default='MMM',
-                choices = ["3m", "5m_vs_6m", "2s3z", "1c3s5z","MMM","3s5z_vs_3s6z"],
+    function('--map_name', type=str, default='3m',
+            choices = [
+                "3m",
+                "8m", 
+                "1c3s5z",
+                "MMM", 
+                "2c_vs_64zg", 
+                "3s_vs_5z",
+                "3s5z",
+                "5m_vs_6m",
+                "8m_vs_9m",
+                "10m_vs_11m",
+                "25m",
+                 "27m_vs_30m",
+                 "MMM2",
+                 "6h_vs_8z",
+                 "3s5z_vs_3s6z"
+            ],
                 help="Which smac map to run on")
+    function("--difficulty_level", type=str,
+                        default="7", help="difficulty level of map")
     function("--add_move_state", action='store_true', default=False)
     function("--add_local_obs", action='store_true', default=False)
     function("--add_distance_state", action='store_true', default=False)
@@ -72,6 +90,7 @@ def parse_args(args, parser):
     return all_args
 
 def main(args):
+    
     parser = get_config()
     all_args = parse_args(args = args, parser = parser)
     
@@ -97,27 +116,29 @@ def main(args):
         / all_args.env_name
         / all_args.map_name
         / all_args.algorithm_name
-        / all_args.experiment_name
+        / (all_args.experiment_name + "_" + str(all_args.seed))
     )
+    
     if not run_dir.exists():
         os.makedirs(str(run_dir))
+        
     setproctitle.setproctitle(
         "-".join([all_args.env_name, all_args.map_name, all_args.algorithm_name, all_args.experiment_name])
         + "@"
         + all_args.user_name
+        + str(all_args.seed)
     )
     
     if all_args.use_wandb:
         run = wandb.init(
             config=all_args,
-            project=all_args.env_name,
+            project= all_args.env_name + "_" + all_args.map_name,  
+            notes=socket.gethostname(),
             entity=all_args.user_name,
-            notes=all_args.notes,
             name="-".join([all_args.algorithm_name, all_args.experiment_name, "seed" + str(all_args.seed)]),
             group=all_args.group_name,
             dir=str(run_dir),
             job_type="training",
-            reinit=True,
         )
         
     warnings.filterwarnings("ignore", category=DeprecationWarning, module="gym")
@@ -135,6 +156,10 @@ def main(args):
     
     runner = Runner(config)
     runner.run()
+
+    envs.close()
+    if all_args.use_eval and eval_envs is not envs:
+        eval_envs.close()
 
     if all_args.use_wandb:
         run.finish()

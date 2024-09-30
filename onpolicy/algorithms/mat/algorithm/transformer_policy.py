@@ -118,7 +118,7 @@ class TransformerPolicy:
         rnn_states_critic = check(rnn_states_critic).to(**self.tpdv)
         return values, actions, action_log_probs, rnn_states_actor, rnn_states_critic
 
-    def get_values(self, cent_obs, obs, rnn_states_critic, masks):
+    def get_values(self, cent_obs, obs, rnn_states, rnn_states_critic, masks, available_actions=None):
         """
         Get value function predictions.
         :param cent_obs (np.ndarray): centralized input to the critic.
@@ -130,8 +130,11 @@ class TransformerPolicy:
 
         cent_obs = cent_obs.reshape(-1, self.num_agents, self.share_obs_dim)
         obs = obs.reshape(-1, self.num_agents, self.obs_dim)
+        if available_actions is not None:
+            available_actions = available_actions.reshape(-1, self.num_agents, self.act_dim)
 
-        values = self.transformer.get_values(cent_obs, obs)
+
+        values = self.transformer.get_values(cent_obs, obs, available_actions)
 
         values = values.view(-1, 1)
 
@@ -150,7 +153,7 @@ class TransformerPolicy:
         :param available_actions: (np.ndarray) denotes which actions are available to agent
                                   (if None, all actions available)
         :param active_masks: (torch.Tensor) denotes whether an agent is active or dead.
-
+        
         :return values: (torch.Tensor) value function predictions.
         :return action_log_probs: (torch.Tensor) log probabilities of the input actions.
         :return dist_entropy: (torch.Tensor) action distribution entropy for the given inputs.
@@ -197,8 +200,8 @@ class TransformerPolicy:
 
         return actions, rnn_states_actor
 
-    def save(self, save_dir, episode):
-        torch.save(self.transformer.state_dict(), str(save_dir) + "/transformer_" + str(episode) + ".pt")
+    def save(self, save_dir):
+        torch.save(self.transformer.state_dict(), str(save_dir) + "/mat.pt")
 
     def restore(self, model_dir):
         transformer_state_dict = torch.load(model_dir)

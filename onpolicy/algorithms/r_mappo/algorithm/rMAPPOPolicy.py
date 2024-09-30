@@ -75,7 +75,7 @@ class R_MAPPOPolicy:
         values, rnn_states_critic = self.critic(cent_obs, rnn_states_critic, masks)
         return values, actions, action_log_probs, rnn_states_actor, rnn_states_critic
 
-    def get_values(self, cent_obs, rnn_states_critic, masks):
+    def get_values(self, cent_obs, obs, rnn_states, rnn_states_critic, masks, available_actions=None):
         """
         Get value function predictions.
         :param cent_obs (np.ndarray): centralized input to the critic.
@@ -113,9 +113,10 @@ class R_MAPPOPolicy:
                                                                      active_masks)
 
         values, _ = self.critic(cent_obs, rnn_states_critic, masks)
+        
         return values, action_log_probs, dist_entropy
 
-    def act(self, obs, rnn_states_actor, masks, available_actions=None, deterministic=False):
+    def act(self, cent_obs, obs, rnn_states_actor, masks, available_actions=None, deterministic=False):
         """
         Compute actions using the given inputs.
         :param obs (np.ndarray): local agent inputs to the actor.

@@ -142,7 +142,6 @@ class Encoder(nn.Module):
 
         rep = self.blocks(self.ln(x))
         v_loc = self.head(rep)
-
         return v_loc, rep
 
 
@@ -298,7 +297,7 @@ class MultiAgentTransformer(nn.Module):
 
         return output_action, output_action_log, v_loc
 
-    def get_values(self, state, obs):
+    def get_values(self, state, obs, available_actions=None):
         # state unused
         ori_shape = np.shape(state)
         state = np.zeros((*ori_shape[:-1], 37), dtype=np.float32)

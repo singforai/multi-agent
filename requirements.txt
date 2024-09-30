@@ -1,0 +1,23 @@
+
+=========================================================gfootball===================================================================================
+pip install torch==1.12.1+cu113 torchvision==0.13.1+cu113 torchaudio==0.12.1 --extra-index-url https://download.pytorch.org/whl/cu113
+pip install wandb
+
+sudo apt-get install git cmake build-essential libgl1-mesa-dev libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev libsdl2-gfx-dev libboost-all-dev libdirectfb-dev libst-dev mesa-utils xvfb x11vnc python3-pip
+
+pip install --upgrade pip setuptools psutil wheel
+
+pip install gfootball
+
+pip install imageio
+
+pip install numpy==1.26.4
+
+=====================================================================================================================================================
+
+pip install pysc2
+pip install protobuf==3.19.0
+
+-> pysc2
+    FLAGS = flags.FLAGS
+    FLAGS(sys.argv[:1])

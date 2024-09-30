@@ -115,7 +115,7 @@ class R_MAPPO():
         value_preds_batch = check(value_preds_batch).to(**self.tpdv)
         return_batch = check(return_batch).to(**self.tpdv)
         active_masks_batch = check(active_masks_batch).to(**self.tpdv)
-
+        
         # Reshape to do in a single forward pass for all steps
         values, action_log_probs, dist_entropy = self.policy.evaluate_actions(share_obs_batch,
                                                                               obs_batch, 
@@ -125,6 +125,7 @@ class R_MAPPO():
                                                                               masks_batch, 
                                                                               available_actions_batch,
                                                                               active_masks_batch)
+        
         # actor update
         imp_weights = torch.exp(action_log_probs - old_action_log_probs_batch)
 

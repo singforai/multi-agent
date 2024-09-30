@@ -70,7 +70,6 @@ class StarCraft2Env(MultiAgentEnv):
         args,
         step_mul=8,
         move_amount=2,
-        difficulty="7",
         game_version=None,
         seed=None,
         continuing_episode=False,
@@ -96,7 +95,6 @@ class StarCraft2Env(MultiAgentEnv):
         reward_scale=True,
         reward_scale_rate=20,
         replay_dir="",
-        replay_prefix="",
         window_size_x=1920,
         window_size_y=1200,
         heuristic_ai=False,
@@ -199,6 +197,10 @@ class StarCraft2Env(MultiAgentEnv):
             Log messages about observations, state, actions and rewards for
             debugging purposes (default is False).
         """
+        self.n_eval_rollout_threads = args.n_eval_rollout_threads
+        self.use_render = args.use_render
+        self.eval_episodes = args.eval_episodes
+        
         # Map arguments
         self.map_name = args.map_name
         self.add_local_obs = args.add_local_obs
@@ -220,7 +222,7 @@ class StarCraft2Env(MultiAgentEnv):
         self.episode_limit = map_params["limit"]
         self._move_amount = move_amount
         self._step_mul = step_mul
-        self.difficulty = difficulty
+        self.difficulty = args.difficulty_level
 
         # Observations and state
         self.obs_own_health = obs_own_health
@@ -262,7 +264,7 @@ class StarCraft2Env(MultiAgentEnv):
         self.debug = debug
         self.window_size = (window_size_x, window_size_y)
         self.replay_dir = replay_dir
-        self.replay_prefix = replay_prefix
+        self.replay_prefix = args.experiment_name + "_"  + args.map_name
 
         # Actions
         self.n_actions_no_attack = 6
@@ -368,10 +370,10 @@ class StarCraft2Env(MultiAgentEnv):
                 self.map_x, int(self.map_y / 8))
             self.pathing_grid = np.transpose(np.array([
                 [(b >> i) & 1 for b in row for i in range(7, -1, -1)]
-                for row in vals], dtype=np.bool))
+                for row in vals], dtype=np.bool_))
         else:
             self.pathing_grid = np.invert(np.flip(np.transpose(np.array(
-                list(map_info.pathing_grid.data), dtype=np.bool).reshape(
+                list(map_info.pathing_grid.data), dtype=np.bool_).reshape(
                     self.map_x, self.map_y)), axis=1))
 
         self.terrain_height = np.flip(
@@ -611,7 +613,11 @@ class StarCraft2Env(MultiAgentEnv):
 
             local_obs = self.stacked_local_obs.reshape(self.n_agents, -1)
             global_state = self.stacked_global_state.reshape(self.n_agents, -1)
-
+            
+        if self.use_render:
+            if self._episode_count * self.n_eval_rollout_threads == self.eval_episodes:
+                self.use_render()
+            
         return local_obs, global_state, rewards, dones, infos, available_actions
 
     def get_agent_action(self, a_id, action):
@@ -1739,7 +1745,7 @@ class StarCraft2Env(MultiAgentEnv):
         (n_agents, n_agents + n_enemies) indicating which units
         are visible to each agent.
         """
-        arr = np.zeros((self.n_agents, self.n_agents + self.n_enemies), dtype=np.bool)
+        arr = np.zeros((self.n_agents, self.n_agents + self.n_enemies), dtype=np.bool_)
 
         for agent_id in range(self.n_agents):
             current_agent = self.get_unit_by_id(agent_id)
