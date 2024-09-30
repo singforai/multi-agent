@@ -90,16 +90,17 @@ def make_render_env(all_args):
 def parse_args(args, parser):
     function = parser.add_argument
     function("--game_length", type=int, default=2999, help="Max length for any game")
-    function("--scenario_name", type=str, default="academy_3_vs_1_with_keeper",
+    function("--scenario_name", type=str, default="11_vs_11_hard_stochastic",
         choices=[
             "curriculum_learning",
             "academy_3_vs_1_with_keeper",
             "academy_pass_and_shoot_with_keeper",
             "academy_counterattack_easy",
-            "academy_corner"
+            "academy_corner",
+            "11_vs_11_hard_stochastic"
         ],
     )
-    function("--num_agents", type=int, default=3, help="number of controlled players. (exclude goalkeeper)")
+    function("--num_agents", type=int, defaul = 10, help="number of controlled players. (exclude goalkeeper)")
     function("--rewards", type=str, default="scoring", help="comma separated list of rewards to be added.")
     function("--smm_width", type=int, default=96, help="width of super minimap.")
     function("--smm_height", type=int, default=72, help="height of super minimap.")
