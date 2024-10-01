@@ -90,7 +90,7 @@ def make_render_env(all_args):
 def parse_args(args, parser):
     function = parser.add_argument
     function("--game_length", type=int, default=2999, help="Max length for any game")
-    function("--scenario_name", type=str, default="11_vs_11_hard_stochastic",
+    function("--scenario_name", type=str, default="sampling",
         choices=[
             "curriculum_learning",
             "academy_3_vs_1_with_keeper",

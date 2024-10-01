@@ -74,7 +74,6 @@ class RFCL_Buffer(SharedReplayBuffer):
         
         for idx, done in enumerate(dones_env):
             if np.all(done):
-                print(step, idx)
                 demo_index = demo_index_list[done_stack]
                 noisy_init_state = self.sampling_step[demo_index] - self.geometric_noisesr()
             
