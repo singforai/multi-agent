@@ -16,7 +16,7 @@ from utils.hyper_setting import hyper_check
 from envs.football.football_env import FootballEnv
 from envs.env_wrappers import ShareSubprocVecEnv, ShareDummyVecEnv
 
-from runner.shared.football_runner import FootballRunner as Runner
+
 
 
 def make_train_env(all_args):
@@ -49,7 +49,7 @@ def make_eval_env(all_args):
                 env_args = {"scenario": all_args.scenario_name,
                             "n_agent": all_args.num_agents,
                             "reward": all_args.rewards,
-                            "use_render": all_args.use_render}
+                            "use_render": False}
                 env = FootballEnv(env_args = env_args)
             else:
                 print("Can not support the " +
@@ -97,10 +97,11 @@ def parse_args(args, parser):
             "academy_pass_and_shoot_with_keeper",
             "academy_counterattack_easy",
             "academy_corner",
-            "11_vs_11_hard_stochastic"
+            "11_vs_11_hard_stochastic",
+            "sampling",
         ],
     )
-    function("--num_agents", type=int, defaul = 10, help="number of controlled players. (exclude goalkeeper)")
+    function("--num_agents", type=int, default = 10, help="number of controlled players. (exclude goalkeeper)")
     function("--rewards", type=str, default="scoring", help="comma separated list of rewards to be added.")
     function("--smm_width", type=int, default=96, help="width of super minimap.")
     function("--smm_height", type=int, default=72, help="height of super minimap.")
@@ -194,8 +195,15 @@ def main(args):
         "run_dir": run_dir
     }
 
-    runner = Runner(config)
-    runner.run(file_path)
+    
+    if all_args.use_rfcl:
+        from runner.shared.football_runner_v2 import FootballRunner as Runner
+        runner = Runner(config)
+        runner.run(file_path)
+    else:
+        from runner.shared.football_runner import FootballRunner as Runner
+        runner = Runner(config)
+        runner.run(file_path)
     
     envs.close()
     if all_args.use_eval and eval_envs is not envs:

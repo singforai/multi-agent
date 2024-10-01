@@ -7,6 +7,12 @@ def get_config():
         description='MARL', formatter_class=argparse.RawDescriptionHelpFormatter)
     
     function = parser.add_argument
+    
+    function(
+        "--use_rfcl",
+        action="store_false",
+        default=True,
+    )
 
     function(
         "--use_pma_block",
@@ -157,11 +163,11 @@ def get_config():
     function("--save_interval", type=int, default=500, help="time duration between contiunous twice models saving.")
 
     # log parameters
-    function("--log_interval", type=int, default=5, help="time duration between contiunous twice log printing.")
+    function("--log_interval", type=int, default=1, help="time duration between contiunous twice log printing.")
 
     # eval parameters
     function("--use_eval", action='store_false', default=True, help="by default, do not start evaluation. If set`, start evaluation alongside with training.")
-    function("--eval_interval", type=int, default=5, help="time duration between contiunous twice evaluation progress.")
+    function("--eval_interval", type=int, default=10, help="time duration between contiunous twice evaluation progress.")
     function("--eval_episodes", type=int, default=32, help="number of episodes of a single evaluation.")
 
     # render parameters

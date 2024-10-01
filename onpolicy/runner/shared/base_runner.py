@@ -4,6 +4,8 @@ import torch
 
 import numpy as np
 from gym import spaces
+
+from utils.rfcl_buffer import RFCL_Buffer 
 from utils.shared_buffer import SharedReplayBuffer
 
 def _t2n(x):
@@ -26,6 +28,7 @@ class Runner(object):
             self.render_envs = config['render_envs']       
 
         # parameters
+        self.use_rfcl: bool = self.all_args.use_rfcl
         self.use_eval: bool = self.all_args.use_eval
         self.use_wandb: bool = self.all_args.use_wandb
         self.use_render: bool = self.all_args.use_render
@@ -132,13 +135,22 @@ class Runner(object):
             )
         
         # buffer
-        self.buffer = SharedReplayBuffer(
-            self.all_args,
-            self.num_agents,
-            observation_space,
-            share_observation_space,
-            self.envs.action_space[0]
-        )
+        if self.use_rfcl:
+            self.buffer = RFCL_Buffer(
+                self.all_args,
+                self.num_agents,
+                observation_space,
+                share_observation_space,
+                self.envs.action_space[0]
+            )
+        else:
+            self.buffer = SharedReplayBuffer(
+                self.all_args,
+                self.num_agents,
+                observation_space,
+                share_observation_space,
+                self.envs.action_space[0]
+            )
 
     def run(self):
         """Collect training data, perform training updates, and evaluate policy."""

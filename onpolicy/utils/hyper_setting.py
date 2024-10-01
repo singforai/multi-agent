@@ -37,8 +37,12 @@ def hyper_check(all_args):
         all_args.use_centralized_V = False
         if all_args.scenario_name != "curriculum_learning":
             all_args.use_additional_obs = False
+        if all_args.use_render:
+            all_args.n_eval_rollout_threads = all_args.n_render_rollout_threads
+            all_args.n_rollout_threads = all_args.n_render_rollout_threads
     else: 
         raise NotImplementedError
+
     
     return all_args, num_agents
     

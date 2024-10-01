@@ -47,6 +47,7 @@ class FootballEnv(MultiAgentEnv):
         self.pre_obs = None
 
     def _encode_obs(self, raw_obs):
+
         obs = self.feature_encoder.encode(raw_obs.copy())
         obs_cat = np.hstack(
             [np.array(obs[k], dtype=np.float32).flatten() for k in sorted(obs)]
@@ -68,8 +69,12 @@ class FootballEnv(MultiAgentEnv):
         return obs, state, ava
 
     def step(self, actions):
+        """
+        개별적인 rollout에 대해 정보 변환
+        """
         actions_int = [int(a) for a in actions]
         o, r, d, i = self.env.step(actions_int)
+        
         obs = []
         ava = []
         for obs_dict in o:
@@ -77,7 +82,7 @@ class FootballEnv(MultiAgentEnv):
             obs.append(obs_i)
             ava.append(ava_i)
         state = obs.copy()
-
+        
         rewards = [[self.reward_encoder.calc_reward(_r, _prev_obs, _obs)]
                    for _r, _prev_obs, _obs in zip(r, self.pre_obs, o)]
 
