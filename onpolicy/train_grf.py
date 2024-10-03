@@ -8,7 +8,7 @@ import warnings
 import setproctitle
 from pathlib import Path
 from config import get_config
-from utils.util import fix_seed, generate_file
+from utils.util import fix_seed, generate_subfile
 from utils.hyper_setting import hyper_check
 
 
@@ -171,8 +171,8 @@ def main(args):
             job_type="training",
             reinit=True,
         )
-    if all_args.scenario_name == "curriculum_learning":
-        all_args.scenario_name, file_path = generate_file(all_args)
+    if all_args.scenario_name == "curriculum_learning" or all_args.use_rfcl:
+        all_args.scenario_name, file_path = generate_subfile(all_args)
     else:
         file_path = None
      

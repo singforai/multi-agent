@@ -22,6 +22,7 @@ class FootballRunner(Runner):
     
     def run(self, file_path):
         
+        backward_progress = 0.0
         episodes = int(self.num_env_steps) // self.episode_length // self.n_rollout_threads
 
         train_episode_rewards = [0 for _ in range(self.n_rollout_threads)]
@@ -29,18 +30,19 @@ class FootballRunner(Runner):
         train_episode_scores = [0 for _ in range(self.n_rollout_threads)]
         done_episodes_scores = []
         
-        episode = 0
-        dones_env = np.ones(self.n_rollout_threads, dtype=bool)
-        _, _, _ = self.envs.reset()
+        self.deque_length = 10
+        self.result = deque([0] * self.deque_length, maxlen=self.deque_length)
         
-        while episodes > episode:
-            
+        episode = 0
+        total_num_steps = 0
+        _, _, _ = self.envs.reset()
+        while episodes > episode or backward_progress > 0.9:
             if self.use_linear_lr_decay:
                 self.trainer.policy.lr_decay(episode, episodes)
+            
+            self.buffer.sampling_demo(file_path)
                 
             for step in range(self.episode_length):
-                if np.any(dones_env):
-                    self.buffer.sampling_demo(step = step, dones_env = dones_env)
                 
                 values, actions, action_log_probs, rnn_states, rnn_states_critic = self.collect(step)
                 obs, share_obs, rewards, dones, infos, available_actions = self.envs.step(actions)
@@ -55,6 +57,7 @@ class FootballRunner(Runner):
                         done_episodes_rewards.append(train_episode_rewards[t])
                         train_episode_rewards[t] = 0
                         done_episodes_scores.append(train_episode_scores[t])
+                        self.result.append(train_episode_scores[t])
                         train_episode_scores[t] = 0
 
                 data = obs, share_obs, rewards, dones, infos, available_actions, \
@@ -62,11 +65,15 @@ class FootballRunner(Runner):
                        rnn_states, rnn_states_critic
                 self.insert(data)
 
+            episode += 1
+            total_num_steps = (episode + 1) * self.episode_length * self.n_rollout_threads
             self.compute()
             train_infos = self.train()
+            
+            update, self.backward_progress, self.ewma_win_rate = self.buffer.update_progress(win_rate = np.mean(deque([0.0 if x < 0 else x for x in self.result], maxlen=self.result.maxlen)))
 
-            # post process
-            total_num_steps = (episode + 1) * self.episode_length * self.n_rollout_threads
+            train_infos["match_result"] = self.ewma_win_rate
+            train_infos["backward_progress"] = self.backward_progress
 
             # log information
             if episode % self.log_interval == 0:
@@ -95,13 +102,13 @@ class FootballRunner(Runner):
                         wandb.log({"train_avg_score": aver_episode_scores}, step=total_num_steps)
                     
             # eval
-            if episode % self.eval_interval == 0 and self.use_eval:
-                self.eval(total_num_steps, episode)
+            # if episode % self.eval_interval == 0 and self.use_eval:
+            #     self.eval(total_num_steps, episode)
                 
             """
             backward learning: backward sampling이 initial state에 도달할 때까지 실행
             """
-            episode += 1
+            
         
         # while True:
         #     """
@@ -191,17 +198,6 @@ class FootballRunner(Runner):
                 
         # if self.save_model:
         #     self.save(episode = episode)
-
-    def backward_warmup(self):
-        # reset env
-        obs, share_obs, ava = self.envs.reset()
-        if not self.use_centralized_V:
-            share_obs = obs
-
-        self.buffer.share_obs[0] = share_obs.copy()
-        self.buffer.obs[0] = obs.copy()
-        self.buffer.available_actions[0] = ava.copy()
-        
 
     @torch.no_grad()
     def collect(self, step):
@@ -295,7 +291,6 @@ class FootballRunner(Runner):
 
         while True:
             self.trainer.prep_rollout()
-            
             eval_actions, eval_rnn_states = \
                 self.trainer.policy.act(np.concatenate(eval_share_obs),
                                         np.concatenate(eval_obs),

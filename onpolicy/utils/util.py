@@ -85,30 +85,59 @@ def fix_seed(seed):
     torch.backends.cudnn.benchmark = False
     torch.backends.cudnn.deterministic = True
     
-def generate_file(all_args):
-    from gfootball.scenarios import curriculum_learning
+def generate_subfile(all_args):
+
     time_code = int(time.time())
     print(f"Time code: {time_code}")
-    x = str(curriculum_learning.__file__).replace('.py', '')
+    
+    if all_args.scenario_name == "curriculum_learning":
+        from gfootball.scenarios import curriculum_learning
+        x = str(curriculum_learning.__file__).replace('.py', '')
+        scenario_file = curriculum_learning
+
+        data = {
+            'difficulty_level': 1,
+            'level_stack': 0,
+            "game_length": all_args.game_length
+        }
+        
+    if all_args.use_rfcl:
+        from gfootball.scenarios import sampling
+        x= str(sampling.__file__).replace('.py', '')
+        scenario_file = sampling
+        init_loc = [
+                [-1.000000, 0.000000],
+                [0.000000,  0.020000],
+                [0.000000, -0.020000],
+                [-0.422000, -0.19576],
+                [-0.500000, -0.06356],
+                [-0.500000, 0.063559],
+                [-0.422000, 0.195760],
+                [-0.184212, -0.10568],
+                [-0.267574, 0.000000],
+                [-0.184212, 0.105680],
+                [-0.010000, -0.21610]
+        ]
+        data = {
+            "left_team": init_loc,
+            "right_team": init_loc,
+            "ball": [0,0]
+        }
+    
     new_file_dir = f"{x}_{time_code}.py"
+    json_name = f'level_{time_code}.json'
+    json_path = os.path.join('./level', json_name)
     
-    file_name = f'level_{time_code}.json'
-    file_path = os.path.join('./level', file_name)
-    
-    shutil.copy(curriculum_learning.__file__, new_file_dir)
+    shutil.copy(scenario_file.__file__, new_file_dir)
     
     def del_new_file():
         if os.path.exists(new_file_dir):
                 os.remove(new_file_dir)
-        if os.path.exists(file_path):
-                os.remove(file_path)
+        if os.path.exists(json_path):
+                os.remove(json_path)
                 
     atexit.register(del_new_file)
-    data = {
-        'difficulty_level': 1,
-        'level_stack': 0,
-        "game_length": all_args.game_length
-    }
-    with open(file_path, 'w') as json_file:
+
+    with open(json_path, 'w') as json_file:
         json.dump(data, json_file, indent=4)
-    return new_file_dir.split("/")[-1].replace(".py", ""), file_path
+    return new_file_dir.split("/")[-1].replace(".py", ""), json_path

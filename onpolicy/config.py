@@ -72,7 +72,7 @@ def get_config():
 
     # replay buffer parameters
     function("--episode_length", type=int,
-                        default=100, help="Max length for any episode")
+                        default=200, help="Max length for any episode")
     # network parameters
     function("--share_policy", action='store_false',
                         default=True, help='Whether agent share the same policy')
