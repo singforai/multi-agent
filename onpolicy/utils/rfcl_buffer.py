@@ -9,12 +9,12 @@ class RFCL_Buffer(SharedReplayBuffer):
         np.set_printoptions(threshold=np.inf)
         
         win_data_only = True
-        self.num_demo_data = 20 # ****************
+        self.num_demo_data = 5 # ****************
         self.geometric_prob = 0.4
         self.reverse_step_size = 2
         self.backward_progress = 0.0
         
-        self.decay_rate = 0.4
+        self.decay_rate = 0.2
         self.ewma_win_rate = 0.0
         self.level_up_condition = 0.8# ****************
 
@@ -51,12 +51,12 @@ class RFCL_Buffer(SharedReplayBuffer):
         for demo_data in self.demo_state_set:
             zero_states = np.where(np.all(demo_data == 0, axis=(1, 2)))[0]
             if len(zero_states) > 0:
-                self.sampling_step.append(max(zero_states[0] - self.reverse_step_size, 0))
+                self.sampling_step.append(zero_states[0] - self.reverse_step_size)
             else:
                 self.sampling_step.append(demo_data.shape[0])
-        
         self.update_sampling_prob()
-        self.level_up_rate = self.reverse_step_size / np.mean(self.sampling_step)
+        
+        self.level_up_rate = self.reverse_step_size / np.array(self.sampling_step)
         
         
     def update_sampling_prob(self):
@@ -70,9 +70,9 @@ class RFCL_Buffer(SharedReplayBuffer):
     def update_progress(self, win_rate):
         update = False
         self.ewma_win_rate = (1 - self.decay_rate) * self.ewma_win_rate +  self.decay_rate * win_rate
-        if self.ewma_win_rate >= self.level_up_condition:
+        if self.ewma_win_rate >= self.level_up_condition and win_rate >= self.level_up_condition:
             self.sampling_step[self.demo_index] = max(self.sampling_step[self.demo_index] - self.reverse_step_size, 0)
-            self.progresses[self.demo_index] = min(self.progresses[self.demo_index] + self.level_up_rate, 100)
+            self.progresses[self.demo_index] = min(self.progresses[self.demo_index] + self.level_up_rate[self.demo_index], 100)
             self.backward_progress = np.mean(self.progresses)
             self.update_sampling_prob()
             update = True

@@ -30,7 +30,7 @@ class FootballRunner(Runner):
         train_episode_scores = [0 for _ in range(self.n_rollout_threads)]
         done_episodes_scores = []
         
-        self.deque_length = 10
+        self.deque_length = 20
         self.result = deque([0] * self.deque_length, maxlen=self.deque_length)
         
         episode = 0
