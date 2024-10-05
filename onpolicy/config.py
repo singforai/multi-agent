@@ -7,24 +7,11 @@ def get_config():
         description='MARL', formatter_class=argparse.RawDescriptionHelpFormatter)
     
     function = parser.add_argument
-    
-    function(
-        "--use_rfcl",
-        action="store_false",
-        default=True,
-    )
-
     function(
         "--use_pma_block",
         action="store_false",
         default=True,
         help="whether to use pwa block for central state-value",
-    )
-    function(
-        "--use_additional_obs",
-        action="store_false",
-        default=True,
-        help="whether to use additional obs in football env",
     )
     
     #Tizero algorithms 
@@ -54,9 +41,9 @@ def get_config():
                         action='store_false', default=True, help="by default, make sure random seed effective. if set, bypass such function.")
     function("--n_torch_threads", type=int,
                         default=16, help="Number of torch threads for training")
-    function("--n_rollout_threads", type=int, default=32,
+    function("--n_rollout_threads", type=int, default=20,
                         help="Number of parallel envs for training rollouts")
-    function("--n_eval_rollout_threads", type=int, default=32,
+    function("--n_eval_rollout_threads", type=int, default=20,
                         help="Number of parallel envs for evaluating rollouts")
     function("--n_render_rollout_threads", type=int, default=1,
                         help="Number of parallel envs for rendering rollouts")
@@ -167,10 +154,11 @@ def get_config():
 
     # eval parameters
     function("--use_eval", action='store_false', default=True, help="by default, do not start evaluation. If set`, start evaluation alongside with training.")
-    function("--eval_interval", type=int, default=10, help="time duration between contiunous twice evaluation progress.")
-    function("--eval_episodes", type=int, default=32, help="number of episodes of a single evaluation.")
+    function("--eval_interval", type=int, default=25, help="time duration between contiunous twice evaluation progress.")
+    function("--eval_episodes", type=int, default=20, help="number of episodes of a single evaluation.")
 
     # render parameters
+    function("--save_replay", action='store_true', default=False, help="whether to save replay")
     function("--save_gifs", action='store_true', default=False, help="by default, do not save render video. If set, save video.")
     function("--use_render", action='store_true', default=False, help="by default, do not render the env during training. If set, start render. Note: something, the environment has internal render process which is not controlled by this hyperparam.")
     function("--render_episodes", type=int, default=1, help="the number of episodes to render a given env")

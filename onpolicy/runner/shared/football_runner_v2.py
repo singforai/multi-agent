@@ -19,6 +19,18 @@ class FootballRunner(Runner):
     def __init__(self, config):
         super(FootballRunner, self).__init__(config)
         self.env_infos = defaultdict(list)
+
+    def warmup(self, file_path):
+        
+        # reset env
+        self.buffer.sampling_demo(file_path)
+        obs, share_obs, ava = self.envs.reset()
+        if not self.use_centralized_V:
+            share_obs = obs
+
+        self.buffer.share_obs[0] = share_obs.copy()
+        self.buffer.obs[0] = obs.copy()
+        self.buffer.available_actions[0] = ava.copy()
     
     def run(self, file_path):
         
@@ -30,17 +42,23 @@ class FootballRunner(Runner):
         train_episode_scores = [0 for _ in range(self.n_rollout_threads)]
         done_episodes_scores = []
         
-        self.deque_length = 20
+        self.deque_length = 10
         self.result = deque([0] * self.deque_length, maxlen=self.deque_length)
-        
+        self.demo_update_interval = self.all_args.demo_update_interval
+        self.result = []
         episode = 0
         total_num_steps = 0
-        _, _, _ = self.envs.reset()
+        
+        
+        
+        """
+        backward learning: backward sampling이 initial state에 도달할 때까지 실행
+        """
         while episodes > episode or backward_progress > 0.9:
+            self.warmup(file_path = file_path)
+            
             if self.use_linear_lr_decay:
                 self.trainer.policy.lr_decay(episode, episodes)
-            
-            self.buffer.sampling_demo(file_path)
                 
             for step in range(self.episode_length):
                 
@@ -70,11 +88,16 @@ class FootballRunner(Runner):
             self.compute()
             train_infos = self.train()
             
-            update, self.backward_progress, self.ewma_win_rate = self.buffer.update_progress(win_rate = np.mean(deque([0.0 if x < 0 else x for x in self.result], maxlen=self.result.maxlen)))
-
-            train_infos["match_result"] = self.ewma_win_rate
-            train_infos["backward_progress"] = self.backward_progress
-
+            if episode % self.demo_update_interval == 0 and episode > 0 and len(self.result) > 0:
+                update, self.backward_progress, self.ewma_win_rate = self.buffer.update_progress(
+                    win_rate = np.mean(
+                        [0.0 if x < 0 else x for x in self.result]
+                    )
+                )
+                self.result = []
+                train_infos["match_result"] = self.ewma_win_rate
+                train_infos["backward_progress"] = self.backward_progress
+                
             # log information
             if episode % self.log_interval == 0:
                 end = time.time()
@@ -96,108 +119,20 @@ class FootballRunner(Runner):
                     done_episodes_scores = []
                     print("some episodes done, average rewards: {}, scores: {}"
                           .format(aver_episode_rewards, aver_episode_scores))
-                    
+
                     if self.use_wandb:
                         wandb.log({"train_avg_rewards": aver_episode_rewards}, step=total_num_steps)
                         wandb.log({"train_avg_score": aver_episode_scores}, step=total_num_steps)
-                    
+
+
+            if (episode % self.save_interval) == 0 and self.save_model and episode != 0:
+                self.save(episode = episode)
+
             # eval
-            # if episode % self.eval_interval == 0 and self.use_eval:
-            #     self.eval(total_num_steps, episode)
+            if episode % self.eval_interval == 0 and self.use_eval:
+                self.reverse_eval(total_num_steps, episode)
                 
-            """
-            backward learning: backward sampling이 initial state에 도달할 때까지 실행
-            """
-            
-        
-        # while True:
-        #     """
-        #     forward learning: 
-        #     """
-        #     pass
-            
-        # for episode in range(episodes): 
 
-
-        
-        # for episode in range(episodes):
-              
-        #     if self.use_linear_lr_decay:
-        #         self.trainer.policy.lr_decay(episode, episodes)
-            
-        #     for step in range(self.episode_length):
-                
-        #         # Sample actions
-        #         values, actions, action_log_probs, rnn_states, rnn_states_critic = self.collect(step)
-                    
-        #         # Obser reward and next obs
-        #         obs, share_obs, rewards, dones, infos, available_actions = self.envs.step(actions)
-
-        #         dones_env = np.all(dones, axis=1)
-        #         reward_env = np.mean(rewards, axis=1).flatten()
-        #         train_episode_rewards += reward_env
-
-        #         score_env = [t_info[0]["score_reward"] for t_info in infos]
-        #         train_episode_scores += np.array(score_env)
-        #         for t in range(self.n_rollout_threads):
-        #             if dones_env[t]:
-                        
-        #                 done_episodes_rewards.append(train_episode_rewards[t])
-        #                 train_episode_rewards[t] = 0
-        #                 done_episodes_scores.append(train_episode_scores[t])
-        #                 train_episode_scores[t] = 0
-
-        #         data = obs, share_obs, rewards, dones, infos, available_actions, \
-        #                values, actions, action_log_probs, \
-        #                rnn_states, rnn_states_critic
-
-        #         # insert data into buffer
-        #         self.insert(data)
-
-        #     # compute return and update network
-        #     self.compute()
-        #     train_infos = self.train()
-            
-        #     # post process
-        #     total_num_steps = (episode + 1) * self.episode_length * self.n_rollout_threads
-
-        #     # if (episode % self.save_interval) == 0 and self.save_model and episode != 0:
-        #     #     self.save(episode = episode)
-
-        #     # log information
-        #     if episode % self.log_interval == 0:
-        #         end = time.time()
-        #         print("\n Scenario {} Algo {} Exp {} updates {}/{} episodes, total num timesteps {}/{}, FPS {}.\n"
-        #                 .format(self.all_args.scenario_name,
-        #                         self.algorithm_name,
-        #                         self.experiment_name,
-        #                         episode,
-        #                         episodes,
-        #                         total_num_steps,
-        #                         self.num_env_steps,
-        #                         int(total_num_steps / (end - start))))
-
-        #         self.log_train(train_infos, total_num_steps)
-
-        #         if len(done_episodes_rewards) > 0:
-        #             aver_episode_rewards = np.mean(done_episodes_rewards)
-        #             aver_episode_scores = np.mean(done_episodes_scores)
-        #             done_episodes_rewards = []
-        #             done_episodes_scores = []
-        #             print("some episodes done, average rewards: {}, scores: {}"
-        #                   .format(aver_episode_rewards, aver_episode_scores))
-                    
-        #             if self.use_wandb:
-        #                 wandb.log({"train_avg_rewards": aver_episode_rewards}, step=total_num_steps)
-        #                 wandb.log({"train_avg_score": aver_episode_scores}, step=total_num_steps)
-                    
-
-        #     # eval
-        #     if episode % self.eval_interval == 0 and self.use_eval:
-        #         self.eval(total_num_steps, episode)
-                
-        # if self.save_model:
-        #     self.save(episode = episode)
 
     @torch.no_grad()
     def collect(self, step):
@@ -277,7 +212,7 @@ class FootballRunner(Runner):
         return data["difficulty_level"], data["level_stack"]
 
     @torch.no_grad()
-    def eval(self, total_num_steps, episode):
+    def reverse_eval(self, total_num_steps, episode):
         eval_episode = 0
         eval_episode_rewards = []
         one_episode_rewards = [0 for _ in range(self.all_args.eval_episodes)]
@@ -297,7 +232,7 @@ class FootballRunner(Runner):
                                         np.concatenate(eval_rnn_states),
                                         np.concatenate(eval_masks),
                                         np.concatenate(ava),
-                                        deterministic=True)
+                                        deterministic=False)
                 
             eval_actions = np.array(np.split(_t2n(eval_actions), self.all_args.eval_episodes))
             eval_rnn_states = np.array(np.split(_t2n(eval_rnn_states), self.all_args.eval_episodes))

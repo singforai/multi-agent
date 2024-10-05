@@ -102,9 +102,9 @@ def generate_subfile(all_args):
         }
         
     if all_args.use_rfcl:
-        from gfootball.scenarios import sampling
-        x= str(sampling.__file__).replace('.py', '')
-        scenario_file = sampling
+        from gfootball.scenarios import rfcl
+        x= str(rfcl.__file__).replace('.py', '')
+        scenario_file = rfcl
         init_loc = [
                 [-1.000000, 0.000000],
                 [0.000000,  0.020000],
@@ -126,7 +126,11 @@ def generate_subfile(all_args):
     
     new_file_dir = f"{x}_{time_code}.py"
     json_name = f'level_{time_code}.json'
-    json_path = os.path.join('./level', json_name)
+    directory = os.path.join(os.path.expanduser('~'), 'level')
+
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+    json_path = os.path.join(directory, json_name)
     
     shutil.copy(scenario_file.__file__, new_file_dir)
     

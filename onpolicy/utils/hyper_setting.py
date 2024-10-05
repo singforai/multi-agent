@@ -35,11 +35,13 @@ def hyper_check(all_args):
     elif all_args.env_name == "football":
         num_agents = all_args.num_agents
         all_args.use_centralized_V = False
-        if all_args.scenario_name != "curriculum_learning":
-            all_args.use_additional_obs = False
-        if all_args.use_render:
+        if all_args.save_replay:
+            print("all rollout threads set to render rollout threads")
             all_args.n_eval_rollout_threads = all_args.n_render_rollout_threads
             all_args.n_rollout_threads = all_args.n_render_rollout_threads
+        if all_args.use_rfcl:
+            if all_args.scenario_name != "rfcl":
+                raise NotImplementedError("If u want to use rfcl mode, u have to set scenario_name to 'rfcl'.")
     else: 
         raise NotImplementedError
 

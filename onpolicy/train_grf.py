@@ -16,9 +16,6 @@ from utils.hyper_setting import hyper_check
 from envs.football.football_env import FootballEnv
 from envs.env_wrappers import ShareSubprocVecEnv, ShareDummyVecEnv
 
-
-
-
 def make_train_env(all_args):
     def get_env_fn(rank):
         def init_env():
@@ -26,7 +23,8 @@ def make_train_env(all_args):
                 env_args = {"scenario": all_args.scenario_name,
                             "n_agent": all_args.num_agents,
                             "reward": all_args.rewards,
-                            "use_render": all_args.use_render}
+                            "use_render": all_args.use_render,
+                            "save_replay": all_args.save_replay}
                 env = FootballEnv(env_args = env_args)
  
             else:
@@ -46,10 +44,15 @@ def make_eval_env(all_args):
     def get_env_fn(rank):
         def init_env():
             if all_args.env_name == "football":
-                env_args = {"scenario": all_args.scenario_name,
+                if all_args.use_rfcl:
+                    eval_scenario_name = "rfcl_eval"
+                else:
+                    eval_scenario_name = all_args.scenario_name
+                env_args = {"scenario": eval_scenario_name,
                             "n_agent": all_args.num_agents,
                             "reward": all_args.rewards,
-                            "use_render": False}
+                            "use_render": False,
+                            "save_replay": all_args.save_replay}
                 env = FootballEnv(env_args = env_args)
             else:
                 print("Can not support the " +
@@ -72,7 +75,8 @@ def make_render_env(all_args):
                             "n_agent": all_args.num_agents,
                             "reward": all_args.rewards,
                             "use_render": all_args.use_render,
-                            "video_dir" : all_args.video_dir}
+                            "video_dir" : all_args.video_dir,
+                            "save_replay": all_args.save_replay}
                 env = FootballEnv(env_args = env_args)
             else:
                 print("Can not support the " +
@@ -89,8 +93,7 @@ def make_render_env(all_args):
 
 def parse_args(args, parser):
     function = parser.add_argument
-    function("--game_length", type=int, default=2999, help="Max length for any game")
-    function("--scenario_name", type=str, default="sampling",
+    function("--scenario_name", type=str, default="rfcl",
         choices=[
             "curriculum_learning",
             "academy_3_vs_1_with_keeper",
@@ -98,7 +101,7 @@ def parse_args(args, parser):
             "academy_counterattack_easy",
             "academy_corner",
             "11_vs_11_hard_stochastic",
-            "sampling",
+            "rfcl",
         ],
     )
     function("--num_agents", type=int, default = 10, help="number of controlled players. (exclude goalkeeper)")
@@ -119,6 +122,17 @@ def parse_args(args, parser):
         action="store_false",
         default=True,
         help="by default true. If false, use different reward for each agent.",
+    )
+    function(
+        "--use_rfcl",
+        action="store_false",
+        default=True,
+    )
+    function(
+        "--demo_update_interval", 
+        type=int, 
+        default = 1,
+        help="number of controlled players. (exclude goalkeeper)"
     )
     all_args = parser.parse_known_args(args)[0]
 
@@ -178,7 +192,7 @@ def main(args):
      
     warnings.filterwarnings("ignore", category=DeprecationWarning, module="gym")
     
-    if not all_args.use_render:
+    if not all_args.save_replay:
         envs = make_train_env(all_args)
         eval_envs = make_eval_env(all_args) if all_args.use_eval else None
     else:

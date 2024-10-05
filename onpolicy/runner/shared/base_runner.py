@@ -34,14 +34,12 @@ class Runner(object):
         self.use_render: bool = self.all_args.use_render
         self.save_model: bool = self.all_args.save_model
         self.use_centralized_V: bool = self.all_args.use_centralized_V
-        self.use_additional_obs: bool = self.all_args.use_additional_obs 
         self.use_linear_lr_decay: bool = self.all_args.use_linear_lr_decay
         self.use_obs_instead_of_state: bool = self.all_args.use_obs_instead_of_state
         
         self.env_name: str = self.all_args.env_name
         self.algorithm_name: str = self.all_args.algorithm_name
         self.experiment_name: str = self.all_args.experiment_name
-
 
         self.hidden_size: int = self.all_args.hidden_size
         self.recurrent_N: int = self.all_args.recurrent_N

@@ -1,3 +1,5 @@
+import os 
+
 import h5py
 import json
 import numpy as np
@@ -16,12 +18,14 @@ class RFCL_Buffer(SharedReplayBuffer):
         
         self.decay_rate = 0.2
         self.ewma_win_rate = 0.0
-        self.level_up_condition = 0.8# ****************
+        self.level_up_condition = 0.8 # ****************
 
         """
         가공된 데이터를 일정 개수만큼 가져오는 코드가 필요함, 그리고 가져온 개수만큼의 curriculum level을 초기화.
         """
-        with h5py.File("./gfootball_demo_level10.h5", 'r') as dataset:
+        home_directory = os.path.expanduser("~")
+        file_path = os.path.join(home_directory, 'level', 'gfootball_demo_level10.h5')
+        with h5py.File(file_path, 'r') as dataset:
             state_data = dataset["state"][:]
             label = dataset["rewards"][:]
             ava_data = dataset["available_actions"][:]
@@ -77,25 +81,14 @@ class RFCL_Buffer(SharedReplayBuffer):
             self.update_sampling_prob()
             update = True
         return update, self.backward_progress, self.ewma_win_rate
-    
-    def init_rollout(self, idx, obs, ava):
-        self.share_obs[0][idx] = obs
-        self.obs[0][idx] = obs
-        self.rnn_states[0][idx] = 0
-        self.masks[0][idx] = 1
-        self.bad_masks[0][idx] = 1
-        self.active_masks[0][idx] = 1
-        self.rnn_states_critic[0][idx] = 0
-        self.available_actions[0][idx] = ava
         
     def sampling_demo(self, file_path):
 
         self.demo_index = np.random.choice(len(self.demo_sampling_prob), p=self.demo_sampling_prob)
         noisy_init_state = max(self.sampling_step[self.demo_index] - self.geometric_noisesr(), 0)
-        observation = self.demo_state_set[self.demo_index][noisy_init_state]
-        available_action = self.demo_ava_set[self.demo_index][noisy_init_state]
         player_location = self.demo_loc_set[self.demo_index][noisy_init_state]
-        
+        # observation = self.demo_state_set[self.demo_index][noisy_init_state]
+        # available_action = self.demo_ava_set[self.demo_index][noisy_init_state]
         
         with open(file_path, 'r') as json_file:
             data = json.load(json_file)
@@ -107,10 +100,3 @@ class RFCL_Buffer(SharedReplayBuffer):
         }
         with open(file_path, 'w') as json_file:
             json.dump(data, json_file, indent=4)
-    
-        for roll_idx in range(self.n_rollout_threads):
-            self.init_rollout(
-                idx = roll_idx, 
-                obs = observation,
-                ava = available_action,
-            )

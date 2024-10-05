@@ -18,7 +18,8 @@ class FootballEnv(MultiAgentEnv):
         self.n_agents = kwargs["env_args"]["n_agent"]
         self.reward_type = kwargs["env_args"]["reward"]
         self.use_render = kwargs["env_args"]["use_render"]
-        if self.use_render:
+        self.save_replay = kwargs["env_args"]["save_replay"]
+        if self.save_replay:
             self.video_dir = kwargs["env_args"]["video_dir"]
         else:
             self.video_dir = None
