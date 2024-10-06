@@ -79,7 +79,7 @@ class RFCL_Buffer(SharedReplayBuffer):
             update = True
         print(f"backward_progress: {self.progresses}")
         print(f"result: {win_rate}")
-        return update, self.backward_progress, np.mean(win_rate)
+        return update, self.backward_progress, np.mean(win_rate) 
         
     def sampling_demo(self, file_path):
 

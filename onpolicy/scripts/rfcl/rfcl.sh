@@ -1,6 +1,6 @@
 #!/bin/bash
 
-python ../../train_grf.py --use_wandb\
+python ../../train_grf.py\
     --num_env_steps 100000000 \
     --n_rollout_threads 10 \
     --n_eval_rollout_threads 10 \
