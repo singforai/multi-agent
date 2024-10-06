@@ -42,14 +42,9 @@ class FootballRunner(Runner):
         train_episode_scores = [0 for _ in range(self.n_rollout_threads)]
         done_episodes_scores = []
         
-        self.deque_length = 10
-        self.result = deque([0] * self.deque_length, maxlen=self.deque_length)
-        self.demo_update_interval = self.all_args.demo_update_interval
         self.result = []
         episode = 0
         total_num_steps = 0
-        
-        
         
         """
         backward learning: backward sampling이 initial state에 도달할 때까지 실행
@@ -88,11 +83,9 @@ class FootballRunner(Runner):
             self.compute()
             train_infos = self.train()
             
-            if episode % self.demo_update_interval == 0 and episode > 0 and len(self.result) > 0:
+            if len(self.result) > 0:
                 update, self.backward_progress, self.ewma_win_rate = self.buffer.update_progress(
-                    win_rate = np.mean(
-                        [0.0 if x < 0 else x for x in self.result]
-                    )
+                    win_rate = [0.0 if x < 0 else x for x in self.result]
                 )
                 self.result = []
                 train_infos["match_result"] = self.ewma_win_rate
@@ -279,6 +272,3 @@ class FootballRunner(Runner):
                 print("eval average episode rewards: {}, scores: {}."
                       .format(np.mean(eval_episode_rewards), np.mean(eval_episode_scores)))
                 break
-            
-
-

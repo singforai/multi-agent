@@ -12,12 +12,10 @@ class RFCL_Buffer(SharedReplayBuffer):
         
         win_data_only = True
         self.num_demo_data = 5 # ****************
-        self.geometric_prob = 0.4
+        self.geometric_prob = 0.5
         self.reverse_step_size = 2
         self.backward_progress = 0.0
         
-        self.decay_rate = 0.2
-        self.ewma_win_rate = 0.0
         self.level_up_condition = 0.8 # ****************
 
         """
@@ -70,17 +68,18 @@ class RFCL_Buffer(SharedReplayBuffer):
     def geometric_noisesr(self):
         offset_value = np.random.geometric(self.geometric_prob) - 1
         return offset_value
-    
+
     def update_progress(self, win_rate):
         update = False
-        self.ewma_win_rate = (1 - self.decay_rate) * self.ewma_win_rate +  self.decay_rate * win_rate
-        if self.ewma_win_rate >= self.level_up_condition and win_rate >= self.level_up_condition:
+        if np.mean(win_rate) >= self.level_up_condition:
             self.sampling_step[self.demo_index] = max(self.sampling_step[self.demo_index] - self.reverse_step_size, 0)
             self.progresses[self.demo_index] = min(self.progresses[self.demo_index] + self.level_up_rate[self.demo_index], 100)
             self.backward_progress = np.mean(self.progresses)
             self.update_sampling_prob()
             update = True
-        return update, self.backward_progress, self.ewma_win_rate
+        print(f"backward_progress: {self.progresses}")
+        print(f"result: {win_rate}")
+        return update, self.backward_progress, np.mean(win_rate)
         
     def sampling_demo(self, file_path):
 

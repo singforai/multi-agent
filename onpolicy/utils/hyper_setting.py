@@ -36,6 +36,8 @@ def hyper_check(all_args):
         num_agents = all_args.num_agents
         all_args.use_centralized_V = False
         if all_args.save_replay:
+            all_args.scenario_name = "11_vs_11_hard_stochastic"
+            all_args.use_rfcl = False
             print("all rollout threads set to render rollout threads")
             all_args.n_eval_rollout_threads = all_args.n_render_rollout_threads
             all_args.n_rollout_threads = all_args.n_render_rollout_threads

@@ -147,7 +147,7 @@ def get_config():
                         default=False, help='use a linear schedule on the learning rate')
     # save parameters
     function("--save_model", action = "store_true", default=False, help="time duration between contiunous twice models saving.")
-    function("--save_interval", type=int, default=500, help="time duration between contiunous twice models saving.")
+    function("--save_interval", type=int, default=500000000, help="time duration between contiunous twice models saving.")
 
     # log parameters
     function("--log_interval", type=int, default=1, help="time duration between contiunous twice log printing.")

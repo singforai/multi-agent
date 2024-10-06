@@ -128,12 +128,6 @@ def parse_args(args, parser):
         action="store_false",
         default=True,
     )
-    function(
-        "--demo_update_interval", 
-        type=int, 
-        default = 1,
-        help="number of controlled players. (exclude goalkeeper)"
-    )
     all_args = parser.parse_known_args(args)[0]
 
     return all_args
