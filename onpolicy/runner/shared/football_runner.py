@@ -300,7 +300,7 @@ class FootballRunner(Runner):
                     np.concatenate(render_rnn_states),
                     np.concatenate(render_masks),
                     np.concatenate(available_action),
-                    deterministic=True
+                    deterministic=False
                 )
 
                 # [n_envs*n_agents, ...] -> [n_envs, n_agents, ...]
@@ -310,8 +310,8 @@ class FootballRunner(Runner):
                 render_actions_env = [render_actions[idx, :, 0] for idx in range(self.n_render_rollout_threads)]
 
                 # step
-                render_obs, render_share_obs, render_rewards, render_dones, render_infos,\
-                    available_action = render_env.step(render_actions_env)
+                render_obs, render_share_obs, render_rewards, render_dones, render_infos, available_action ,_,_,_ \
+                    = render_env.step(render_actions_env)
 
                 # append frame
                 if self.all_args.save_gifs:        

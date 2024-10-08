@@ -304,7 +304,7 @@ def shareworker(remote, parent_remote, env_fn_wrapper):
     while True:
         cmd, data = remote.recv()
         if cmd == 'step':
-            ob, s_ob, reward, done, info, available_actions = env.step(data)
+            ob, s_ob, reward, done, info, available_actions, oob_r, pass_r, ball_r  = env.step(data)
             if 'bool' in done.__class__.__name__:
                 if done:
                     ob, s_ob, available_actions = env.reset()
@@ -312,7 +312,7 @@ def shareworker(remote, parent_remote, env_fn_wrapper):
                 if np.all(done):
                     ob, s_ob, available_actions = env.reset()
 
-            remote.send((ob, s_ob, reward, done, info, available_actions))
+            remote.send((ob, s_ob, reward, done, info, available_actions, oob_r, pass_r, ball_r))
         elif cmd == 'reset':
             ob, s_ob, available_actions = env.reset()
             remote.send((ob, s_ob, available_actions))
@@ -373,8 +373,8 @@ class ShareSubprocVecEnv(ShareVecEnv):
     def step_wait(self):
         results = [remote.recv() for remote in self.remotes]
         self.waiting = False
-        obs, share_obs, rews, dones, infos, available_actions = zip(*results)
-        return np.stack(obs), np.stack(share_obs), np.stack(rews), np.stack(dones), infos, np.stack(available_actions)
+        obs, share_obs, rews, dones, infos, available_actions, oob_r, pass_r, ball_r = zip(*results)
+        return np.stack(obs), np.stack(share_obs), np.stack(rews), np.stack(dones), infos, np.stack(available_actions), np.stack(oob_r), np.stack(pass_r), np.stack(ball_r)
 
     def reset(self):
         for remote in self.remotes:
@@ -722,7 +722,7 @@ class ShareDummyVecEnv(ShareVecEnv):
 
     def step_wait(self):
         results = [env.step(a) for (a, env) in zip(self.actions, self.envs)]
-        obs, share_obs, rews, dones, infos, available_actions = map(
+        obs, share_obs, rews, dones, infos, available_actions, _, _, _ = map(
             np.array, zip(*results))
 
         for (i, done) in enumerate(dones):
@@ -734,7 +734,7 @@ class ShareDummyVecEnv(ShareVecEnv):
                     obs[i], share_obs[i], available_actions[i] = self.envs[i].reset()
         self.actions = None
 
-        return obs, share_obs, rews, dones, infos, available_actions
+        return obs, share_obs, rews, dones, infos, available_actions, _, _, _
 
     def reset(self):
         results = [env.reset() for env in self.envs]

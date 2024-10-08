@@ -84,14 +84,22 @@ class FootballEnv(MultiAgentEnv):
             ava.append(ava_i)
         state = obs.copy()
         
-        rewards = [[self.reward_encoder.calc_reward(_r, _prev_obs, _obs)]
-                   for _r, _prev_obs, _obs in zip(r, self.pre_obs, o)]
-
+        rewards = []
+        oob_rewards = []
+        pass_rewards = []
+        ball_rewards = []
+        for _r, _prev_obs, _obs in zip(r, self.pre_obs, o):
+            reward, oob_r, pass_r, ball_r = self.reward_encoder.calc_reward(_r, _prev_obs, _obs)
+            rewards.append([reward])
+            oob_rewards.append([oob_r])
+            pass_rewards.append([pass_r])
+            ball_rewards.append([ball_r])
+            
         self.pre_obs = o
 
         dones = np.ones((self.n_agents), dtype=bool) * d
         infos = [i for n in range(self.n_agents)]
-        return obs, state, rewards, dones, infos, ava
+        return obs, state, rewards, dones, infos, ava, oob_rewards, pass_rewards, ball_rewards
 
     def render(self, **kwargs):
         # self.env.render(**kwargs)

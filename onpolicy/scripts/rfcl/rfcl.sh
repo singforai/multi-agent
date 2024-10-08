@@ -1,6 +1,6 @@
 #!/bin/bash
 
-python ../../train_grf.py\
+python ../../train_grf.py --use_wandb\
     --num_env_steps 100000000 \
     --n_rollout_threads 10 \
     --n_eval_rollout_threads 10 \
@@ -13,7 +13,6 @@ python ../../train_grf.py\
     --n_head 4 \
     --save_model \
     --save_interval 300 \
-    --experiment_name notewma \
-    --num_gpu 0 \
+    --experiment_name backward-final \
+    --num_gpu 1 \
     --group_name rfcl \
-    

@@ -4,48 +4,64 @@ class Rewarder:
     def __init__(self) -> None:
         self.player_last_hold_ball = -1
     def calc_reward(self, rew, prev_obs, obs):
+        
         if obs["ball_owned_team"] == 0:
             self.player_last_hold_ball = obs["ball_owned_player"]
+            
+        ball_r = ball_position_reward(obs)
+        poss_r = possession_reward(prev_obs, obs)
+        oob_r = oob_reward(obs)
+        pass_r = passing_reward(prev_obs, obs)
         reward = (
-            + win_reward(obs)
             + preprocess_score(rew)
-            + ball_position_reward(obs, self.player_last_hold_ball)
+            + ball_r
             + yellow_reward(prev_obs, obs)
-            + oob_reward(obs)
-            # + passing_reward(prev_obs, obs)
+            + oob_r
+            + pass_r
+            + poss_r
         )
-        return reward
+        return reward, oob_r, pass_r, ball_r + poss_r
+    
+def possession_reward(prev_obs, obs):
+    if obs["game_mode"] == 0 and prev_obs["game_mode"] == 0:
+        if prev_obs["ball_owned_team"] == 0 and obs["ball_owned_team"] == 1:
+            return -0.1
+        if prev_obs["ball_owned_team"] == 1 and obs["ball_owned_team"] == 0:
+            return +0.3
+    return 0
+    
 def preprocess_score(rew_signal):
     if rew_signal > 0:
         return 5.0 * rew_signal
     else:
         return rew_signal
-def win_reward(obs):
-    win_reward = 0.0
-    # print(f"steps left: {obs['steps_left']}")
-    if obs["steps_left"] == 0:
-        # print("STEPS LEFT == 0!")
-        [my_score, opponent_score] = obs["score"]
-        if my_score > opponent_score:
-            win_reward = my_score - opponent_score
-    return 5.0 * win_reward
+
 def oob_reward(obs):
     if obs["game_mode"] == 0:
-        left_team_position_x = obs["left_team"][1:][:, 0]
-        left_team_position_y = obs["left_team"][1:][:, 1]
-        out_of_range_count = np.sum((left_team_position_x < -1.0) | (left_team_position_x > 1.0)) + np.sum((left_team_position_y < -0.42) | (left_team_position_y > 0.42))
+        oob_player= 0
+        for x_pos, y_pos in obs["left_team"][1:]:
+            if x_pos <= -1 or x_pos >= 0.9 or y_pos <= -0.42 or y_pos >= 0.42:
+                oob_player += 1
     else:
-        out_of_range_count = 0
-    return - 0.003 * out_of_range_count
+        oob_player= 0
+    return - 0.02 * oob_player
+
 def passing_reward(prev_obs, obs):
-    if prev_obs["ball_owned_team"] == 0 and obs["ball_owned_team"] == 0:
-        if prev_obs["ball_owned_player"] != obs["ball_owned_player"]:
-            reward = 0.0
+    if prev_obs["game_mode"] == 0 and obs["game_mode"] == 0:
+        if prev_obs["ball_owned_team"] == 0 and obs["ball_owned_team"] == 0:
+            if prev_obs["ball_owned_player"] != obs["ball_owned_player"]:
+                if prev_obs["ball"][0] <= obs["ball"][0]:
+                    reward = 0.2
+                else:
+                    reward = 0.05
+            else:
+                reward = 0.0
         else:
             reward = 0.0
     else:
         reward = 0.0
     return reward
+
 def yellow_reward(prev_obs, obs):
     left_yellow = np.sum(obs["left_team_yellow_card"]) - np.sum(
         prev_obs["left_team_yellow_card"]
@@ -55,7 +71,8 @@ def yellow_reward(prev_obs, obs):
     )
     yellow_r = right_yellow - left_yellow
     return 0.05 * yellow_r
-def ball_position_reward(obs, player_last_hold_ball):
+
+def ball_position_reward(obs):
     ball_x, ball_y, ball_z = obs["ball"]
     MIDDLE_X, PENALTY_X, END_X = 0.2, 0.64, 1.0
     PENALTY_Y, END_Y = 0.27, 0.42

@@ -145,10 +145,12 @@ def main(args):
     fix_seed(seed = all_args.seed)
     
     if all_args.cuda and torch.cuda.is_available():
+        torch.cuda.empty_cache()
         print("Device type: GPU")
         device = torch.device(f"cuda:{all_args.num_gpu}")
         torch.set_num_threads(all_args.n_torch_threads)
     else:
+        torch.cuda.empty_cache()
         print("Device type: CPU")
         device = torch.device("cpu")
         torch.set_num_threads(all_args.n_torch_threads)

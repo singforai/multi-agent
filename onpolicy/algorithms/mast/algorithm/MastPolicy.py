@@ -160,5 +160,5 @@ class MastPolicy:
         torch.save(self.model.state_dict(), str(save_dir) + "/mast.pt")
 
     def restore(self, model_dir):
-        state_dict = torch.load(str(model_dir) + '/mast.pt')
+        state_dict = torch.load(str(model_dir) + '/mast.pt', map_location=torch.device('cpu'))
         self.model.load_state_dict(state_dict)

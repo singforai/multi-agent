@@ -46,6 +46,9 @@ class FootballRunner(Runner):
         episode = 0
         total_num_steps = 0
         
+        outofbound_rewards = []
+        passing_rewards = []
+        ball_pos_rewards = []
         """
         backward learning: backward sampling이 initial state에 도달할 때까지 실행
         """
@@ -58,11 +61,15 @@ class FootballRunner(Runner):
             for step in range(self.episode_length):
                 
                 values, actions, action_log_probs, rnn_states, rnn_states_critic = self.collect(step)
-                obs, share_obs, rewards, dones, infos, available_actions = self.envs.step(actions)
+                obs, share_obs, rewards, dones, infos, available_actions, oob_rewards, pass_rewards, ball_rewards\
+                    = self.envs.step(actions)
                 dones_env = np.all(dones, axis=1)
                 reward_env = np.mean(rewards, axis=1).flatten()
                 train_episode_rewards += reward_env
-
+                outofbound_rewards.append(np.mean(oob_rewards.reshape(-1)))
+                passing_rewards.append(np.mean(pass_rewards.reshape(-1)))
+                ball_pos_rewards.append(np.mean(ball_rewards.reshape(-1)))
+                
                 score_env = [t_info[0]["score_reward"] for t_info in infos]
                 train_episode_scores += np.array(score_env)
                 for t in range(self.n_rollout_threads):
@@ -83,13 +90,16 @@ class FootballRunner(Runner):
             self.compute()
             train_infos = self.train()
             
-            if len(self.result) > 0:
-                update, self.backward_progress, self.ewma_win_rate = self.buffer.update_progress(
-                    win_rate = [0.0 if x < 0 else x for x in self.result]
-                )
-                self.result = []
-                train_infos["match_result"] = self.ewma_win_rate
-                train_infos["backward_progress"] = self.backward_progress
+            backward_progress_rate, mean_win_rate, dis2goal = self.buffer.update_progress(
+                win_rate = [0.0 if x < 0 else x for x in self.result]
+            )
+            train_infos["dis2goal"] = dis2goal
+            train_infos["win_rate"] = mean_win_rate
+            train_infos["backward_progress"] = backward_progress_rate
+            train_infos["outofbound_rewards"] = np.mean(outofbound_rewards)
+            train_infos["passing_rewards"] = np.mean(passing_rewards)
+            train_infos["ball_pos_rewards"] = np.mean(ball_pos_rewards)
+            self.result = []
                 
             # log information
             if episode % self.log_interval == 0:
@@ -231,7 +241,8 @@ class FootballRunner(Runner):
             eval_rnn_states = np.array(np.split(_t2n(eval_rnn_states), self.all_args.eval_episodes))
 
             # Obser reward and next obs
-            eval_obs, eval_share_obs, eval_rewards, eval_dones, eval_infos, ava = self.eval_envs.step(eval_actions)
+            eval_obs, eval_share_obs, eval_rewards, eval_dones, eval_infos, ava, _, _, _ \
+                = self.eval_envs.step(eval_actions)
             eval_rewards = np.mean(eval_rewards, axis=1).flatten()
             one_episode_rewards += eval_rewards
 
